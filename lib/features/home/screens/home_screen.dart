@@ -111,7 +111,19 @@ class _HomeScreenState extends State<HomeScreen>
     _requestCountdownTimer?.cancel();
     _cardAnimController.dispose();
     _requestTimerController.dispose();
+    _themeController.removeListener(_handleThemeChange);
     super.dispose();
+  }
+
+  void _handleThemeChange() {
+    if (!mounted) return;
+    _applyMapStyle(_themeController.darkTheme);
+  }
+
+  void _loadMapStyles() {
+    _darkMapStyle = MapStyleHelper.styleFor(true);
+    _lightMapStyle = MapStyleHelper.styleFor(false);
+    _applyMapStyle(_themeController.darkTheme);
   }
 
   void _syncSearchingStatus(bool isOnline) {
@@ -153,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   void _applyMapStyle(bool isDarkMode) {
-    _mapController?.setMapStyle(MapStyleHelper.styleFor(isDarkMode));
+    _mapController?.setMapStyle(isDarkMode ? _darkMapStyle : _lightMapStyle);
   }
 
   void _startRequestTimer(OrderModel order) {

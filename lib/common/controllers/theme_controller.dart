@@ -14,6 +14,7 @@ class ThemeController extends GetxController implements GetxService {
   bool _darkTheme = false;
   bool get darkTheme => _darkTheme;
   Timer? _timer;
+  Timer? _themeTimer;
 
   void _startTimeObserver() {
     _timer?.cancel();
