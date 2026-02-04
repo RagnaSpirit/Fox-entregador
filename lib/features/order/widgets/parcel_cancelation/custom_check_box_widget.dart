@@ -13,7 +13,7 @@ class CustomCheckBoxWidget extends StatelessWidget {
       onTap: () => onClick(!value),
       child: Row(children: [
         Expanded(child: Text(title, style: robotoRegular.copyWith(
-          color: value ? Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.6) : Theme.of(context).hintColor,
+          color: value ? Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.6) : Theme.of(context).hintColor,
           fontWeight: value ? FontWeight.w500 : FontWeight.w400,
         ))),
 
@@ -23,7 +23,7 @@ class CustomCheckBoxWidget extends StatelessWidget {
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           activeColor: Theme.of(context).primaryColor,
           side: BorderSide(
-            color: value ? Theme.of(context).primaryColor : Theme.of(context).disabledColor.withValues(alpha: 0.5),
+            color: value ? Theme.of(context).primaryColor : Theme.of(context).disabledColor.withOpacity(0.5),
           ),
         ),
 

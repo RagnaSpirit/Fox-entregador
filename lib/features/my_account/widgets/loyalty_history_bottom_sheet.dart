@@ -25,7 +25,7 @@ class LoyaltyHistoryBottomSheet extends StatelessWidget {
           height: 5, width: 50,
           margin: const EdgeInsets.only(top: Dimensions.paddingSizeSmall, bottom: Dimensions.paddingSizeDefault),
           decoration: BoxDecoration(
-            color: Theme.of(context).disabledColor.withValues(alpha: 0.3),
+            color: Theme.of(context).disabledColor.withOpacity(0.3),
             borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
           ),
         ),
@@ -42,8 +42,8 @@ class LoyaltyHistoryBottomSheet extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(
             children: [
-              TextSpan(text: 'transaction_id'.tr, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color?.withValues(alpha: 0.5))),
-              TextSpan(text: ': #', style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color?.withValues(alpha: 0.5))),
+              TextSpan(text: 'transaction_id'.tr, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color?.withOpacity(0.5))),
+              TextSpan(text: ': #', style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color?.withOpacity(0.5))),
               TextSpan(text: loyalityPoints?.transactionId??'', style: robotoBold.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color)),
             ],
           ),
@@ -57,7 +57,7 @@ class LoyaltyHistoryBottomSheet extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
               decoration: BoxDecoration(
-                color: const Color(0xff313F38).withValues(alpha: 0.03),
+                color: const Color(0xff313F38).withOpacity(0.03),
                 borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
               ),
               child: Column(children: [

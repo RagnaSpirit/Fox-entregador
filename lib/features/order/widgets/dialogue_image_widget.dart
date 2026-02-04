@@ -60,7 +60,7 @@ class DialogImageWidget extends StatelessWidget {
                 child: Container(
                   height: 100, width: 150, alignment: Alignment.center, decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                  color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                  color: Theme.of(context).primaryColor.withOpacity(0.1),
                 ),
                   child:  Icon(Icons.camera_alt_sharp, color: Theme.of(context).primaryColor, size: 32),
                 ),

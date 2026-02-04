@@ -36,7 +36,7 @@ class ReferralDetails extends StatelessWidget {
               child: RichText(text: TextSpan(
                   text: 'referral_bottom_sheet_note'.tr,
                   style: robotoRegular.copyWith(
-                    color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.6),
+                    color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.6),
                     fontSize: Dimensions.fontSizeDefault, height: 1.5,
                   ),
                   children: [TextSpan(
@@ -46,7 +46,7 @@ class ReferralDetails extends StatelessWidget {
                     TextSpan(
                       text: 'wallet_balance'.tr,
                       style: robotoRegular.copyWith(
-                        color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.6),
+                        color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.6),
                         fontSize: Dimensions.fontSizeDefault, height: 1.5,
                       ),
                     )
@@ -66,14 +66,14 @@ class ReferralDetails extends StatelessWidget {
                       width: 140,
                       padding: const EdgeInsets.only(left: Dimensions.paddingSizeSmall,right: Dimensions.paddingSizeSmall,bottom: Dimensions.paddingSizeSmall),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                        color: Theme.of(context).disabledColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
                       ),
                       child: Column(children: [
                         Align(alignment: Alignment.topRight,
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor.withValues(alpha: 0.75),
+                                color: Theme.of(context).cardColor.withOpacity(0.75),
                                 shape: BoxShape.circle
                             ),
                             padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
@@ -87,7 +87,7 @@ class ReferralDetails extends StatelessWidget {
 
                         Text('invite_or_share_the_code'.tr, textAlign: TextAlign.center,style: robotoRegular.copyWith(
                           fontSize: Dimensions.fontSizeSmall,
-                          color: Theme.of(context).textTheme.bodyMedium!.color!.withValues(alpha: 0.6)
+                          color: Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(0.6)
                         ))
                       ]),
                     ),
@@ -97,14 +97,14 @@ class ReferralDetails extends StatelessWidget {
                       width: 140,
                       padding: const EdgeInsets.only(left: Dimensions.paddingSizeSmall,right: Dimensions.paddingSizeSmall,bottom: Dimensions.paddingSizeSmall),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                        color: Theme.of(context).disabledColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
                       ),
                       child: Column(children: [
                         Align(alignment: Alignment.topRight,
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor.withValues(alpha: 0.75),
+                                color: Theme.of(context).cardColor.withOpacity(0.75),
                                 shape: BoxShape.circle
                             ),
                             padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
@@ -118,7 +118,7 @@ class ReferralDetails extends StatelessWidget {
 
                         Text('your_friend_sign_up'.tr,textAlign: TextAlign.center,style: robotoRegular.copyWith(
                           fontSize: Dimensions.fontSizeSmall,
-                          color: Theme.of(context).textTheme.bodyMedium!.color!.withValues(alpha: 0.6),
+                          color: Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(0.6),
                         ))
                       ]),
                     ),
@@ -128,14 +128,14 @@ class ReferralDetails extends StatelessWidget {
                       width: 140,
                       padding: const EdgeInsets.only(left: Dimensions.paddingSizeSmall,right: Dimensions.paddingSizeSmall,bottom: Dimensions.paddingSizeSmall),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                        color: Theme.of(context).disabledColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
                       ),
                       child: Column(children: [
                         Align(alignment: Alignment.topRight,
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor.withValues(alpha: 0.75),
+                                color: Theme.of(context).cardColor.withOpacity(0.75),
                                 shape: BoxShape.circle
                             ),
                             padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
@@ -149,7 +149,7 @@ class ReferralDetails extends StatelessWidget {
 
                         Text('both_you_and_friend_will'.tr,textAlign: TextAlign.center,style: robotoRegular.copyWith(
                           fontSize: Dimensions.fontSizeSmall,
-                          color: Theme.of(context).textTheme.bodyMedium!.color!.withValues(alpha: 0.6),
+                          color: Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(0.6),
                         ))
                       ]),
                     ),
@@ -163,9 +163,9 @@ class ReferralDetails extends StatelessWidget {
               width: Get.width * 0.9,
               padding: const EdgeInsets.only(left: Dimensions.paddingSizeDefault),
               decoration: BoxDecoration(
-                  color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                  color: Theme.of(context).disabledColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                  border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha: 0.25))
+                  border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.25))
               ),
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Text(Get.find<ProfileController>().profileModel?.refCode ?? '',style: robotoBold),
@@ -179,7 +179,7 @@ class ReferralDetails extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault, vertical: Dimensions.paddingSizeSmall),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).highlightColor.withValues(alpha: 0.2),
+                      color: Theme.of(context).highlightColor.withOpacity(0.2),
                       borderRadius: const BorderRadius.only(topRight: Radius.circular(Dimensions.radiusDefault), bottomRight: Radius.circular(Dimensions.radiusDefault)),
                     ),
                     child: Icon(Icons.copy_rounded,color: Get.isDarkMode ? Theme.of(context).textTheme.bodyMedium!.color : Theme.of(context).primaryColor),
@@ -236,7 +236,7 @@ class ReferralDetails extends StatelessWidget {
             child: Text(
               'our_refer_and_earn_program_is_temporarily_paused'.tr,textAlign: TextAlign.center,
               style: robotoRegular.copyWith(
-                color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.7),
+                color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.7),
                 height: 1.5
               ),
             ),
@@ -252,7 +252,7 @@ class ReferralDetails extends StatelessWidget {
         Container(
           height: 150,
           decoration: BoxDecoration(
-            color: Theme.of(Get.context!).disabledColor.withValues(alpha: 0.1),
+            color: Theme.of(Get.context!).disabledColor.withOpacity(0.1),
             borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
           ),
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeDefault),
@@ -264,7 +264,7 @@ class ReferralDetails extends StatelessWidget {
 
             Text(
               title,
-              style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(Get.context!).textTheme.bodyLarge!.color!.withValues(alpha: 0.6)),
+              style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(Get.context!).textTheme.bodyLarge!.color!.withOpacity(0.6)),
               textAlign: TextAlign.center, maxLines: 4, overflow: TextOverflow.ellipsis,
             ),
           ]),

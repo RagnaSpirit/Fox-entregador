@@ -39,7 +39,7 @@ class SuccessDialogWidget extends StatelessWidget {
                 'the_request_just_sent_to_admin'.tr,
                 textAlign: TextAlign.center,
                 style: robotoRegular.copyWith(
-                  color: Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.6),
+                  color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.6),
                   fontSize: Dimensions.fontSizeSmall,
                 ),
               ),
@@ -56,7 +56,7 @@ class SuccessDialogWidget extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
-                color: Theme.of(context).disabledColor.withValues(alpha: 0.3),
+                color: Theme.of(context).disabledColor.withOpacity(0.3),
                 shape: BoxShape.circle,
               ),
               child: Icon(Icons.clear, color: Theme.of(context).cardColor, size: 16),

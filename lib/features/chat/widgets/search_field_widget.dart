@@ -21,7 +21,7 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).disabledColor.withValues(alpha: 0.2)),
+        border: Border.all(color: Theme.of(context).disabledColor.withOpacity(0.2)),
         borderRadius: BorderRadius.circular(Dimensions.radiusMedium),
       ),
       child: TextField(
@@ -35,7 +35,7 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
           isDense: true,
           suffixIcon: IconButton(
             onPressed: widget.iconPressed as void Function()?,
-            icon: Icon(widget.suffixIcon, color: Theme.of(context).disabledColor.withValues(alpha: 0.6), size: 22, textDirection: TextDirection.ltr),
+            icon: Icon(widget.suffixIcon, color: Theme.of(context).disabledColor.withOpacity(0.6), size: 22, textDirection: TextDirection.ltr),
           ),
         ),
         onSubmitted: widget.onSubmit as void Function(String)?,

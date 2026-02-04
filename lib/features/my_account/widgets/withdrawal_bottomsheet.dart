@@ -73,7 +73,7 @@ class _WithdrawBottomSheetState extends State<WithdrawBottomSheet> {
                 Container(
                   height: 6, width: 30,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                    color: Theme.of(context).primaryColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
@@ -152,13 +152,13 @@ class _WithdrawBottomSheetState extends State<WithdrawBottomSheet> {
                     hintText: 'enter_amount'.tr,
                     hintStyle: robotoRegular.copyWith(color: Theme.of(context).disabledColor),
                     border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.3)),
+                      borderSide: BorderSide(color: Theme.of(context).primaryColor.withOpacity(0.3)),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.3)),
+                      borderSide: BorderSide(color: Theme.of(context).primaryColor.withOpacity(0.3)),
                     ),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor.withValues(alpha: 0.3)),
+                      borderSide: BorderSide(color: Theme.of(context).primaryColor.withOpacity(0.3)),
                     ),
                   ),
                   onChanged: (String value) {
@@ -190,7 +190,7 @@ class _WithdrawBottomSheetState extends State<WithdrawBottomSheet> {
                           child: Container(height: Get.height * 0.15,width: Get.width * 0.2,
                             decoration: BoxDecoration(
                               color:index == selectedIndex ? Theme.of(context).primaryColor :
-                              Theme.of(context).disabledColor.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(30),
+                              Theme.of(context).disabledColor.withOpacity(0.1), borderRadius: BorderRadius.circular(30),
                             ),
                             child: Center(
                               child: Text(PriceConverterHelper.convertPrice(_suggestedAmount[index].toDouble()),

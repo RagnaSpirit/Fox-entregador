@@ -26,7 +26,7 @@ class PaymentInformationDialogWidget extends StatelessWidget {
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Theme.of(context).disabledColor.withValues(alpha: 0.05),
+                color: Theme.of(context).disabledColor.withOpacity(0.05),
               ),
               child: const Icon(Icons.close, size: 20),
             ),
@@ -84,7 +84,7 @@ class PaymentInformationDialogWidget extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault, vertical: Dimensions.paddingSizeExtraSmall),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                      color: disbursement.status == 'pending' ? Colors.blue.withValues(alpha: 0.1) : disbursement.status == 'completed' ? Colors.green.withValues(alpha: 0.1) : Colors.red.withValues(alpha: 0.1),
+                      color: disbursement.status == 'pending' ? Colors.blue.withOpacity(0.1) : disbursement.status == 'completed' ? Colors.green.withOpacity(0.1) : Colors.red.withOpacity(0.1),
                     ),
                     child: Text(disbursement.status!.tr, style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: disbursement.status == 'pending' ? Colors.blue : disbursement.status == 'completed' ? Colors.green : Colors.red)),
                   ),

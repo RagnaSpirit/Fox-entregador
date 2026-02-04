@@ -94,7 +94,7 @@ class _DmRegistrationScreenState extends State<DmRegistrationScreen> {
           ),
           backgroundColor: Theme.of(context).cardColor,
           surfaceTintColor: Theme.of(context).cardColor,
-          shadowColor: Theme.of(context).disabledColor.withValues(alpha: 0.5),
+          shadowColor: Theme.of(context).disabledColor.withOpacity(0.5),
           elevation: 2,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(0),
@@ -106,14 +106,14 @@ class _DmRegistrationScreenState extends State<DmRegistrationScreen> {
                   Expanded(
                     child: Container(
                       height: 4,
-                      color: authController.dmStatus == 0.4 ? Theme.of(context).primaryColor.withValues(alpha: 0.5) : Theme.of(context).primaryColor,
+                      color: authController.dmStatus == 0.4 ? Theme.of(context).primaryColor.withOpacity(0.5) : Theme.of(context).primaryColor,
                     ),
                   ),
 
                   Expanded(
                     child: Container(
                       height: 4,
-                      color: authController.dmStatus != 0.4 ? Theme.of(context).primaryColor.withValues(alpha: 0.5) :  authController.dmStatus != 0.4 ? Theme.of(context).primaryColor : Theme.of(context).disabledColor.withValues(alpha: 0.5),
+                      color: authController.dmStatus != 0.4 ? Theme.of(context).primaryColor.withOpacity(0.5) :  authController.dmStatus != 0.4 ? Theme.of(context).primaryColor : Theme.of(context).disabledColor.withOpacity(0.5),
                     ),
                   ),
                 ]),
@@ -518,12 +518,12 @@ class _DmRegistrationScreenState extends State<DmRegistrationScreen> {
                                           radius: const Radius.circular(Dimensions.radiusDefault),
                                           dashPattern: const [8, 4],
                                           strokeWidth: 1,
-                                          color: Get.isDarkMode ? Colors.white.withValues(alpha: 0.2) : const Color(0xFFE5E5E5),
+                                          color: Get.isDarkMode ? Colors.white.withOpacity(0.2) : const Color(0xFFE5E5E5),
                                         ),
                                         child: Container(
                                           height: 130, width: 180,
                                           decoration: BoxDecoration(
-                                            color: Get.isDarkMode ? Colors.white.withValues(alpha: 0.05) : const Color(0xFFFAFAFA),
+                                            color: Get.isDarkMode ? Colors.white.withOpacity(0.05) : const Color(0xFFFAFAFA),
                                             borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                                           ),
                                           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [

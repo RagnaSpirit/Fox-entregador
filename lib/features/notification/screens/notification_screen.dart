@@ -88,7 +88,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeDefault),
                       child: Text(
                         DateConverterHelper.convertTodayYesterdayDate(notificationController.notificationList![index].createdAt!),
-                        style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.7)),
+                        style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.7)),
                       ),
                     ) : const SizedBox(),
 
@@ -107,7 +107,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       child: Container(
                         padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
                         decoration: BoxDecoration(
-                          color: isSeen ? Theme.of(context).cardColor : Theme.of(context).disabledColor.withValues(alpha: 0.05),
+                          color: isSeen ? Theme.of(context).cardColor : Theme.of(context).disabledColor.withOpacity(0.05),
                           borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                         ),
                         child: Row(children: [
@@ -140,7 +140,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
                                 Text(
                                   DateConverterHelper.beforeTimeFormat(notificationController.notificationList![index].createdAt!),
-                                  style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.5)),
+                                  style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.5)),
                                 ),
 
                               ]),

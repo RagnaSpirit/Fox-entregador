@@ -72,12 +72,12 @@ class _NewPassScreenState extends State<NewPassScreen> {
 
                   widget.fromPasswordChange ? SizedBox(
                     width: context.width * 0.6,
-                    child: Text('please_enter_your_new_password_and_confirm_password'.tr, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.5)), textAlign: TextAlign.center),
+                    child: Text('please_enter_your_new_password_and_confirm_password'.tr, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5)), textAlign: TextAlign.center),
                   ) : Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
                     Text('number_verification_is_successful'.tr, style: robotoBold.copyWith(fontWeight: FontWeight.w600)),
                     const SizedBox(height: 5),
 
-                    Text('please_set_your_new_password'.tr, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.5))),
+                    Text('please_set_your_new_password'.tr, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5))),
                   ]),
                   const SizedBox(height: 35),
 
@@ -135,7 +135,7 @@ class _NewPassScreenState extends State<NewPassScreen> {
                 ),
                 child: !forgotPasswordController.isLoading ? CustomButtonWidget(
                   buttonText: 'done'.tr,
-                  backgroundColor: _newPasswordController.text.trim().isEmpty || _confirmPasswordController.text.trim().isEmpty ? const Color(0xff9DA7BC).withValues(alpha: 0.7) : Theme.of(context).primaryColor,
+                  backgroundColor: _newPasswordController.text.trim().isEmpty || _confirmPasswordController.text.trim().isEmpty ? const Color(0xff9DA7BC).withOpacity(0.7) : Theme.of(context).primaryColor,
                   onPressed: () => _newPasswordController.text.trim().isNotEmpty && _confirmPasswordController.text.trim().isNotEmpty ? _resetPassword(authController) : null,
                 ) : const Center(child: CircularProgressIndicator()),
 

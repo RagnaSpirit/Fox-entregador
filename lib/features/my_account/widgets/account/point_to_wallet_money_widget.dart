@@ -58,7 +58,7 @@ class _PointToWalletMoneyWidgetState extends State<PointToWalletMoneyWidget> {
                 child: Container(
                   padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).hintColor.withValues(alpha: 0.2),
+                    color: Theme.of(context).hintColor.withOpacity(0.2),
                     shape: BoxShape.circle,
                   ),
                   child: Image.asset(
@@ -140,7 +140,7 @@ class _PointToWalletMoneyWidgetState extends State<PointToWalletMoneyWidget> {
                         color: selected ? Theme.of(context).primaryColor : Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(30),
                         border: Border.all(
-                          color: Theme.of(context).primaryColor.withValues(alpha: .35),
+                          color: Theme.of(context).primaryColor.withOpacity(.35),
                         ),
                       ),
                       child: Center(
@@ -173,7 +173,7 @@ class _PointToWalletMoneyWidgetState extends State<PointToWalletMoneyWidget> {
                 buttonText: 'convert_point'.tr,
                 isLoading: myAccountController.isLoading,
                 backgroundColor: Theme.of(context).primaryColor,
-                disabledColor: Theme.of(context).primaryColor.withValues(alpha: 0.5),
+                disabledColor: Theme.of(context).primaryColor.withOpacity(0.5),
                 disabledFontColor: Colors.white,
                 radius: 10,
                 onPressed: isValid ? () {

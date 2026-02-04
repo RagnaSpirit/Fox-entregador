@@ -29,7 +29,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
             child: Align(alignment: Alignment.topRight,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).hintColor.withValues(alpha: 0.2),
+                  color: Theme.of(context).hintColor.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(50),
                 ),
                 padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
@@ -51,7 +51,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
 
           Container(width: Get.width,
             decoration: BoxDecoration(
-              color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+              color: Theme.of(context).disabledColor.withOpacity(0.1),
               borderRadius: const BorderRadius.all(Radius.circular(Dimensions.paddingSizeSmall)),
             ),
             padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
@@ -62,7 +62,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
                   margin:const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
                   height: 4,width: 4,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).textTheme.bodyMedium!.color?.withValues(alpha: 0.6),
+                    color: Theme.of(context).textTheme.bodyMedium!.color?.withOpacity(0.6),
                     borderRadius: const BorderRadius.all(Radius.circular(100)),
                   ),
                 ),
@@ -70,7 +70,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
                 Expanded(
                     child: Text('share_your_referral'.tr,  style: robotoRegular.copyWith(
                       fontSize: Dimensions.fontSizeSmall,
-                      color: Theme.of(context).textTheme.bodyMedium!.color?.withValues(alpha: 0.7),
+                      color: Theme.of(context).textTheme.bodyMedium!.color?.withOpacity(0.7),
                       height: 1.5,
                     ),)
                 ),
@@ -82,7 +82,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
                   margin:const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
                   height: 4,width: 4,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).textTheme.bodyMedium!.color?.withValues(alpha: 0.6),
+                    color: Theme.of(context).textTheme.bodyMedium!.color?.withOpacity(0.6),
                     borderRadius: const BorderRadius.all(Radius.circular(100)),
                   ),
                 ),
@@ -90,7 +90,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
                 Expanded(
                     child: Text('when_your_friend_or_family'.tr,  style: robotoRegular.copyWith(
                       fontSize: Dimensions.fontSizeSmall,
-                      color: Theme.of(context).textTheme.bodyMedium!.color?.withValues(alpha: 0.7),
+                      color: Theme.of(context).textTheme.bodyMedium!.color?.withOpacity(0.7),
                       height: 1.5,
                     ),)
                 ),
@@ -102,7 +102,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
                   margin:const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
                   height: 4,width: 4,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).textTheme.bodyMedium!.color?.withValues(alpha: 0.6),
+                    color: Theme.of(context).textTheme.bodyMedium!.color?.withOpacity(0.6),
                     borderRadius: const BorderRadius.all(Radius.circular(100)),
                   ),
                 ),
@@ -112,7 +112,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
                       text: '${'you_will_receive_a'.tr} ',
                       style: robotoRegular.copyWith(
                         fontSize: Dimensions.fontSizeSmall,
-                        color: Theme.of(context).textTheme.bodyMedium!.color?.withValues(alpha: 0.7),
+                        color: Theme.of(context).textTheme.bodyMedium!.color?.withOpacity(0.7),
                         height: 1.5,
                       ),
                       children: [
@@ -124,7 +124,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
                           text: '${'when_your_friend_complete'.tr} ',
                           style: robotoRegular.copyWith(
                             fontSize: Dimensions.fontSizeSmall,
-                            color: Theme.of(context).textTheme.bodyMedium!.color?.withValues(alpha: 0.7),
+                            color: Theme.of(context).textTheme.bodyMedium!.color?.withOpacity(0.7),
                             height: 1.5,
                           ),
                         )
@@ -139,7 +139,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
                   margin:const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
                   height: 4,width: 4,
                   decoration: BoxDecoration(
-                    color: Theme.of(context).textTheme.bodyMedium!.color?.withValues(alpha: 0.6),
+                    color: Theme.of(context).textTheme.bodyMedium!.color?.withOpacity(0.6),
                     borderRadius: const BorderRadius.all(Radius.circular(100)),
                   ),
                 ),
@@ -147,7 +147,7 @@ class ReferralEarnBottomSheetWidget extends StatelessWidget {
                 Expanded(
                   child: Text('your_friend_will'.tr,  style: robotoRegular.copyWith(
                     fontSize: Dimensions.fontSizeSmall,
-                    color: Theme.of(context).textTheme.bodyMedium!.color?.withValues(alpha: 0.7),
+                    color: Theme.of(context).textTheme.bodyMedium!.color?.withOpacity(0.7),
                     height: 1.5,
                   )),
                 ),
