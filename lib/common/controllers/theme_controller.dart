@@ -37,4 +37,21 @@ class ThemeController extends GetxController implements GetxService {
     _timer?.cancel();
     super.onClose();
   }
+
+  void _startThemeTimer() {
+    _themeTimer?.cancel();
+    _themeTimer = Timer.periodic(const Duration(minutes: 1), (_) {
+      _applyTimeBasedTheme();
+    });
+  }
+
+  void _applyTimeBasedTheme({DateTime? now}) {
+    final DateTime currentTime = now ?? DateTime.now();
+    final bool shouldBeDark = currentTime.hour >= 18 || currentTime.hour < 6;
+    if (_darkTheme != shouldBeDark) {
+      _darkTheme = shouldBeDark;
+      sharedPreferences.setBool(AppConstants.theme, _darkTheme);
+      update();
+    }
+  }
 }

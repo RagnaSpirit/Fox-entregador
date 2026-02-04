@@ -34,6 +34,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   GoogleMapController? _mapController;
+  String? _darkMapStyle;
+  String? _lightMapStyle;
+  late final ThemeController _themeController;
 
   bool mapVisible = true;
   bool _alertPlayed = false;
@@ -61,6 +64,10 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     Get.find<ProfileController>().getProfile();
+
+    _themeController = Get.find<ThemeController>();
+    _themeController.addListener(_handleThemeChange);
+    _loadMapStyles();
 
     _cardAnimController = AnimationController(
       vsync: this,
