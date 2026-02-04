@@ -15,6 +15,7 @@ import 'package:sixam_mart_delivery/helper/responsive_helper.dart';
 import 'package:sixam_mart_delivery/helper/route_helper.dart';
 import 'package:sixam_mart_delivery/helper/string_extension.dart';
 import 'package:sixam_mart_delivery/util/app_constants.dart';
+import 'package:sixam_mart_delivery/util/app_constants.dart';
 import 'package:sixam_mart_delivery/util/dimensions.dart';
 import 'package:sixam_mart_delivery/util/styles.dart';
 import 'package:sixam_mart_delivery/common/widgets/custom_app_bar_widget.dart';
@@ -173,6 +174,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
               showDeliveryConfirmImage = pickedUp && Get.find<SplashController>().configModel!.dmPictureUploadStatus! && controllerOrderModel.orderStatus != 'delivered';
             }
 
+            final bool showCustomerDetails = controllerOrderModel != null &&
+                (parcel == true ||
+                    controllerOrderModel.orderStatus == AppConstants.pickedUp ||
+                    controllerOrderModel.orderStatus == AppConstants.delivered);
+
             return (orderController.orderDetailsModel != null && controllerOrderModel != null) ? Column(children: [
 
               Expanded(child: SingleChildScrollView(
@@ -317,12 +323,21 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                     title: parcel ? 'receiver_details'.tr : 'customer_contact_details'.tr,
                     address: parcel ? controllerOrderModel.receiverDetails : controllerOrderModel.deliveryAddress,
                     image: parcel ? '' : controllerOrderModel.customer != null ? '${controllerOrderModel.customer!.imageFullUrl}' : '',
-                    name: parcel ? controllerOrderModel.receiverDetails!.contactPersonName : controllerOrderModel.deliveryAddress!.contactPersonName,
-                    phone: parcel ? controllerOrderModel.receiverDetails!.contactPersonNumber : controllerOrderModel.deliveryAddress!.contactPersonNumber,
+                    name: parcel
+                        ? controllerOrderModel.receiverDetails!.contactPersonName
+                        : showCustomerDetails
+                            ? controllerOrderModel.deliveryAddress!.contactPersonName
+                            : 'Cliente',
+                    phone: parcel
+                        ? controllerOrderModel.receiverDetails!.contactPersonNumber
+                        : showCustomerDetails
+                            ? controllerOrderModel.deliveryAddress!.contactPersonNumber
+                            : null,
                     latitude: parcel ? controllerOrderModel.receiverDetails!.latitude : controllerOrderModel.deliveryAddress!.latitude,
                     longitude: parcel ? controllerOrderModel.receiverDetails!.longitude : controllerOrderModel.deliveryAddress!.longitude,
-                    showButton: controllerOrderModel.orderStatus != 'delivered' && controllerOrderModel.orderStatus != 'failed'
-                        && controllerOrderModel.orderStatus != 'canceled' && controllerOrderModel.orderStatus != 'refunded',
+                    showButton: (controllerOrderModel.orderStatus != 'delivered' && controllerOrderModel.orderStatus != 'failed'
+                        && controllerOrderModel.orderStatus != 'canceled' && controllerOrderModel.orderStatus != 'refunded')
+                        && showCustomerDetails,
                     isStore: parcel ? false : true, isChatAllow: showChatPermission,
                     messageOnTap: () => Get.toNamed(RouteHelper.getChatRoute(
                       notificationBody: NotificationBodyModel(

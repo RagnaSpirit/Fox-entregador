@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 
 import 'package:sixam_mart_delivery/common/widgets/custom_alert_dialog_widget.dart';
 import 'package:sixam_mart_delivery/features/auth/controllers/auth_controller.dart';
-import 'package:sixam_mart_delivery/features/dashboard/widgets/bottom_nav_item_widget.dart';
 import 'package:sixam_mart_delivery/features/dashboard/widgets/new_request_dialog_widget.dart';
 import 'package:sixam_mart_delivery/features/disbursement/helper/disbursement_helper.dart';
 import 'package:sixam_mart_delivery/features/home/screens/home_screen.dart';
@@ -21,7 +20,6 @@ import 'package:sixam_mart_delivery/helper/notification_helper.dart';
 import 'package:sixam_mart_delivery/helper/route_helper.dart';
 import 'package:sixam_mart_delivery/main.dart';
 import 'package:sixam_mart_delivery/util/dimensions.dart';
-import 'package:sixam_mart_delivery/util/images.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int pageIndex;
@@ -184,39 +182,22 @@ class DashboardScreenState extends State<DashboardScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: const Color(0xFF0B1E2D),
+        backgroundColor: const Color(0xFFF2F4F7),
         bottomNavigationBar: Container(
           height: 72 + MediaQuery.of(context).padding.bottom,
           padding: const EdgeInsets.only(top: 10),
-          decoration: const BoxDecoration(
-            color: Color(0xFF0F2A3D),
-            borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
-          ),
+          decoration: const BoxDecoration(color: Colors.white),
           child: Row(
             children: [
-              BottomNavItemWidget(
-                iconData: Images.home,
-                label: 'home'.tr,
+              _BottomNavIcon(
+                icon: Icons.home_outlined,
                 isSelected: _pageIndex == 0,
                 onTap: () => _setPage(0),
               ),
-              BottomNavItemWidget(
-                iconData: Images.request,
-                label: 'request'.tr,
-                isSelected: _pageIndex == 1,
-                onTap: _navigateRequestPage,
-              ),
-              BottomNavItemWidget(
-                iconData: Images.bag,
-                label: 'orders'.tr,
+              _BottomNavIcon(
+                icon: Icons.list_alt_outlined,
                 isSelected: _pageIndex == 2,
                 onTap: () => _setPage(2),
-              ),
-              BottomNavItemWidget(
-                iconData: Images.userP,
-                label: 'profile'.tr,
-                isSelected: _pageIndex == 3,
-                onTap: () => _setPage(3),
               ),
             ],
           ),
@@ -235,5 +216,34 @@ class DashboardScreenState extends State<DashboardScreen> {
       _pageController!.jumpToPage(pageIndex);
       _pageIndex = pageIndex;
     });
+  }
+}
+
+class _BottomNavIcon extends StatelessWidget {
+  final IconData icon;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _BottomNavIcon({
+    required this.icon,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        child: SizedBox(
+          height: 54,
+          child: Icon(
+            icon,
+            size: 26,
+            color: isSelected ? const Color(0xFF1F2A37) : Colors.black54,
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -7,9 +7,9 @@ import 'package:sixam_mart_delivery/util/images.dart';
 import 'package:sixam_mart_delivery/util/styles.dart';
 import 'package:sixam_mart_delivery/common/widgets/custom_snackbar_widget.dart';
 import 'package:sixam_mart_delivery/features/order/screens/order_details_screen.dart';
+import 'package:sixam_mart_delivery/helper/map_launcher_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class OrderWidget extends StatelessWidget {
   final OrderModel orderModel;
@@ -147,24 +147,26 @@ class OrderWidget extends StatelessWidget {
 
               TextButton(
                 onPressed: () async {
-                  String url;
-                  if(parcel && (orderModel.orderStatus == 'picked_up')) {
-                    url = 'https://www.google.com/maps/dir/?api=1&destination=${orderModel.receiverDetails!.latitude}'
-                        ',${orderModel.receiverDetails!.longitude}&mode=d';
-                  }else if(parcel) {
-                    url = 'https://www.google.com/maps/dir/?api=1&destination=${orderModel.deliveryAddress!.latitude}'
-                        ',${orderModel.deliveryAddress!.longitude}&mode=d';
-                  }else if(orderModel.orderStatus == 'picked_up') {
-                    url = 'https://www.google.com/maps/dir/?api=1&destination=${orderModel.deliveryAddress!.latitude}'
-                        ',${orderModel.deliveryAddress!.longitude}&mode=d';
-                  }else {
-                    url = 'https://www.google.com/maps/dir/?api=1&destination=${orderModel.storeLat ?? '0'}'
-                        ',${orderModel.storeLng ?? '0'}&mode=d';
-                  }
-                  if (await canLaunchUrlString(url)) {
-                    await launchUrlString(url, mode: LaunchMode.externalApplication);
+                  if (parcel && (orderModel.orderStatus == 'picked_up')) {
+                    await MapLauncherHelper.openMap(
+                      latitude: double.tryParse(orderModel.receiverDetails!.latitude ?? '') ?? 0,
+                      longitude: double.tryParse(orderModel.receiverDetails!.longitude ?? '') ?? 0,
+                    );
+                  } else if (parcel) {
+                    await MapLauncherHelper.openMap(
+                      latitude: double.tryParse(orderModel.deliveryAddress!.latitude ?? '') ?? 0,
+                      longitude: double.tryParse(orderModel.deliveryAddress!.longitude ?? '') ?? 0,
+                    );
+                  } else if (orderModel.orderStatus == 'picked_up') {
+                    await MapLauncherHelper.openMap(
+                      latitude: double.tryParse(orderModel.deliveryAddress!.latitude ?? '') ?? 0,
+                      longitude: double.tryParse(orderModel.deliveryAddress!.longitude ?? '') ?? 0,
+                    );
                   } else {
-                    showCustomSnackBar('${'could_not_launch'.tr} $url');
+                    await MapLauncherHelper.openMap(
+                      latitude: double.tryParse(orderModel.storeLat ?? '') ?? 0,
+                      longitude: double.tryParse(orderModel.storeLng ?? '') ?? 0,
+                    );
                   }
                 },
                 style: TextButton.styleFrom(

@@ -13,7 +13,6 @@ import 'package:sixam_mart_delivery/features/profile/controllers/profile_control
 import 'package:sixam_mart_delivery/features/profile/widgets/notification_status_change_bottom_sheet.dart';
 import 'package:sixam_mart_delivery/features/refer_and_earn/screens/refer_and_earn_screen.dart';
 import 'package:sixam_mart_delivery/features/splash/controllers/splash_controller.dart';
-import 'package:sixam_mart_delivery/common/controllers/theme_controller.dart';
 import 'package:sixam_mart_delivery/helper/route_helper.dart';
 import 'package:sixam_mart_delivery/util/app_constants.dart';
 import 'package:sixam_mart_delivery/util/dimensions.dart';
@@ -229,11 +228,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ]),
                 ),
               ),
-              const SizedBox(height: Dimensions.paddingSizeSmall),
-
-              ProfileButtonWidget(icon: Icons.dark_mode_outlined, title: 'dark_mode'.tr, isButtonActive: Get.isDarkMode, onTap: () {
-                Get.find<ThemeController>().toggleTheme();
-              }),
               const SizedBox(height: Dimensions.paddingSizeSmall),
 
               GetBuilder<AuthController>(builder: (authController) {

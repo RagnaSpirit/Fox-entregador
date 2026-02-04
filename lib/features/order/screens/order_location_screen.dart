@@ -12,6 +12,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sixam_mart_delivery/features/order/controllers/order_controller.dart';
 import 'package:sixam_mart_delivery/features/order/domain/models/order_model.dart';
 import 'package:sixam_mart_delivery/features/profile/controllers/profile_controller.dart';
+import 'package:sixam_mart_delivery/common/controllers/theme_controller.dart';
+import 'package:sixam_mart_delivery/helper/map_style_helper.dart';
 import 'package:sixam_mart_delivery/util/dimensions.dart';
 import 'package:sixam_mart_delivery/util/images.dart';
 import 'package:sixam_mart_delivery/common/widgets/custom_app_bar_widget.dart';
@@ -79,20 +81,26 @@ class _OrderLocationScreenState extends State<OrderLocationScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(
-                  double.parse(widget.orderModel.deliveryAddress?.latitude ?? '0'),
-                  double.parse(widget.orderModel.deliveryAddress?.longitude ?? '0'),
-                ),
-                zoom: 16,
-              ),
-              minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
-              zoomControlsEnabled: false,
-              markers: _markers,
-              onMapCreated: (GoogleMapController controller) {
-                _controller = controller;
-                setMarker(widget.orderModel, parcel);
+            GetBuilder<ThemeController>(
+              builder: (themeController) {
+                _controller?.setMapStyle(MapStyleHelper.styleFor(themeController.darkTheme));
+                return GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(
+                      double.parse(widget.orderModel.deliveryAddress?.latitude ?? '0'),
+                      double.parse(widget.orderModel.deliveryAddress?.longitude ?? '0'),
+                    ),
+                    zoom: 16,
+                  ),
+                  minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
+                  zoomControlsEnabled: false,
+                  markers: _markers,
+                  onMapCreated: (GoogleMapController controller) {
+                    _controller = controller;
+                    _controller?.setMapStyle(MapStyleHelper.styleFor(themeController.darkTheme));
+                    setMarker(widget.orderModel, parcel);
+                  },
+                );
               },
             ),
 
