@@ -6,6 +6,7 @@ import 'package:sixam_mart_delivery/common/widgets/custom_snackbar_widget.dart';
 import 'package:sixam_mart_delivery/helper/map_launcher_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class InfoCardWidget extends StatelessWidget {
   final String title;
