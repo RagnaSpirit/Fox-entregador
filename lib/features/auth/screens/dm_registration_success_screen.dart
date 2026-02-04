@@ -22,7 +22,7 @@ class DmRegistrationSuccessScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).cardColor,
         surfaceTintColor: Theme.of(context).cardColor,
-        shadowColor: Theme.of(context).disabledColor.withValues(alpha: 0.5),
+        shadowColor: Theme.of(context).disabledColor.withOpacity(0.5),
         elevation: 2,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(0),

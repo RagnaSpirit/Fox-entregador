@@ -59,20 +59,20 @@ class EarningReportCard extends StatelessWidget {
                 ),
 
                 if (earning != null && earning!.order?.id != null)...[
-                  Text('${'order'.tr} #${earning!.order?.id}', style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.6), fontSize: Dimensions.fontSizeSmall)),
+                  Text('${'order'.tr} #${earning!.order?.id}', style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.6), fontSize: Dimensions.fontSizeSmall)),
                 ] else if(refrealEarnings != null)...[
                   Text(
                     '${'transaction_id'.tr} #${refrealEarnings!.transactionId}', maxLines: 1, overflow: TextOverflow.ellipsis,
-                    style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.6), fontSize: Dimensions.fontSizeSmall),
+                    style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.6), fontSize: Dimensions.fontSizeSmall),
                   ),
                 ] else if(loyalityPoints != null)...[
                   Text(
                     '${'transaction_id'.tr} #${loyalityPoints!.transactionId}', maxLines: 1, overflow: TextOverflow.ellipsis,
-                    style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.6), fontSize: Dimensions.fontSizeSmall),
+                    style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.6), fontSize: Dimensions.fontSizeSmall),
                   ),
                   Text(
                     loyalityPoints!.transactionType!.tr, maxLines: 1, overflow: TextOverflow.ellipsis,
-                    style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.6), fontSize: Dimensions.fontSizeSmall),
+                    style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.6), fontSize: Dimensions.fontSizeSmall),
                   ),
 
                 ],
@@ -107,7 +107,7 @@ class EarningReportCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).hintColor.withValues(alpha: 0.1),
+                  color: Theme.of(context).hintColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                 ),
                 child: Icon(Icons.arrow_forward_ios, size: 12,
@@ -123,7 +123,7 @@ class EarningReportCard extends StatelessWidget {
             padding: const EdgeInsets.only(top: Dimensions.paddingSizeSmall, bottom: Dimensions.paddingSizeDefault),
             child: DottedBorder(
               options: RoundedRectDottedBorderOptions(
-                color: Theme.of(context).hintColor.withValues(alpha: 0.2), strokeWidth: 1, dashPattern: const [4, 8],
+                color: Theme.of(context).hintColor.withOpacity(0.2), strokeWidth: 1, dashPattern: const [4, 8],
                 padding: const EdgeInsets.only(left: Dimensions.paddingSizeDefault, right: Dimensions.paddingSizeDefault),
                 radius: Radius.zero,
               ),

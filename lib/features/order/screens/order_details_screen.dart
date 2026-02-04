@@ -221,7 +221,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                     const Expanded(child: SizedBox()),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeExtraSmall),
-                      decoration: BoxDecoration(color: Theme.of(context).primaryColor.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(5)),
+                      decoration: BoxDecoration(color: Theme.of(context).primaryColor.withOpacity(0.1), borderRadius: BorderRadius.circular(5)),
                       child: Text(
                         cod! ? 'cod'.tr : wallet! ? 'wallet'.tr : partialPay! ? 'partially_pay'.tr : offlinePay! ? 'offline_payment'.tr : 'digitally_paid'.tr,
                         style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).primaryColor),
@@ -282,7 +282,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                     width: double.infinity,
                     padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
                     decoration: BoxDecoration(
-                      color: const Color(0XFF009AF1).withValues(alpha: 0.1),
+                      color: const Color(0XFF009AF1).withOpacity(0.1),
                       borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
                     ),
                     child: RichText(
@@ -410,7 +410,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                       order.parcelCancellation!.returnFee != null && order.parcelCancellation!.returnFee! > 0 ? Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                          color: Theme.of(context).disabledColor.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                         ),
                         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -424,7 +424,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.error.withValues(alpha: 0.1),
+                          color: Theme.of(context).colorScheme.error.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                         ),
                         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -442,7 +442,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                           padding: const EdgeInsets.all(12),
                           width: double.maxFinite,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                            color: Theme.of(context).disabledColor.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                           ),
                           child: Column(
@@ -452,13 +452,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                                 Container(
                                   height: 5, width: 5,
                                   decoration: BoxDecoration(
-                                    color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.7),
+                                    color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.7),
                                     shape: BoxShape.circle,
                                   ),
                                 ),
                                 const SizedBox(width: Dimensions.paddingSizeSmall),
 
-                                Expanded(child: Text(order.parcelCancellation!.reason?[index] ?? '', style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.7)))),
+                                Expanded(child: Text(order.parcelCancellation!.reason?[index] ?? '', style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.7)))),
                               ]);
                             },
                             ),
@@ -472,10 +472,10 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                         padding: const EdgeInsets.all(12),
                         width: double.maxFinite,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                          color: Theme.of(context).disabledColor.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                         ),
-                        child: Text(order.parcelCancellation?.note ?? '', style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.7))),
+                        child: Text(order.parcelCancellation?.note ?? '', style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.7))),
                       ) : const SizedBox(),
                     ]),
                   ) : const SizedBox(),
@@ -587,7 +587,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                   ) : const SizedBox(),
 
                   Get.find<SplashController>().getModuleConfig(order.moduleType).addOn! ? Divider(
-                    thickness: 1, color: Theme.of(context).hintColor.withValues(alpha: 0.5),
+                    thickness: 1, color: Theme.of(context).hintColor.withOpacity(0.5),
                   ) : const SizedBox(),
 
                   Get.find<SplashController>().getModuleConfig(order.moduleType).addOn! ? Row(
@@ -666,7 +666,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
 
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
-                    child: Divider(thickness: 1, color: Theme.of(context).hintColor.withValues(alpha: 0.5)),
+                    child: Divider(thickness: 1, color: Theme.of(context).hintColor.withOpacity(0.5)),
                   ),
 
                   partialPay! ? DottedBorder(
@@ -680,7 +680,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                     ),
                     child: Ink(
                       padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-                      color: !restConfModel ? Theme.of(context).primaryColor.withValues(alpha: 0.05) : Colors.transparent,
+                      color: !restConfModel ? Theme.of(context).primaryColor.withOpacity(0.05) : Colors.transparent,
                       child: Column(children: [
 
                         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [

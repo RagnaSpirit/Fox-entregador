@@ -59,7 +59,7 @@ class ConfirmDialogWidget extends StatelessWidget {
                     Expanded(
                       child: CustomButtonWidget(
                         buttonText: 'no'.tr,
-                        backgroundColor: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                        backgroundColor: Theme.of(context).disabledColor.withOpacity(0.1),
                         isBorder: true,
                         fontColor: Theme.of(context).hintColor,
                         onPressed: () => Get.back(),

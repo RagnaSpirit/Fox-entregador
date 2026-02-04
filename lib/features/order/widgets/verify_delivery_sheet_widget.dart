@@ -76,7 +76,7 @@ class _VerifyDeliverySheetWidgetState extends State<VerifyDeliverySheetWidget> {
               height: 5, width: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radiusLarge),
-                color: Theme.of(context).disabledColor.withValues(alpha: 0.5),
+                color: Theme.of(context).disabledColor.withOpacity(0.5),
               ),
             ),
 
@@ -105,8 +105,8 @@ class _VerifyDeliverySheetWidgetState extends State<VerifyDeliverySheetWidget> {
                     selectedColor: Theme.of(context).primaryColor,
                     selectedFillColor: Get.isDarkMode ? Colors.grey.shade900 : Colors.white,
                     inactiveFillColor: Get.isDarkMode ? Colors.grey.shade900 : Theme.of(context).cardColor,
-                    inactiveColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
-                    activeColor: Theme.of(context).primaryColor.withValues(alpha: 0.7),
+                    inactiveColor: Theme.of(context).primaryColor.withOpacity(0.2),
+                    activeColor: Theme.of(context).primaryColor.withOpacity(0.7),
                     activeFillColor: Get.isDarkMode ? Colors.grey.shade900 : Theme.of(context).cardColor,
                   ),
                   animationDuration: const Duration(milliseconds: 300),

@@ -37,7 +37,7 @@ class _HtmlViewerScreenState extends State<HtmlViewerScreen> {
             borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
             color: Theme.of(context).cardColor,
             boxShadow: [BoxShadow(
-              color: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+              color: Theme.of(context).disabledColor.withOpacity(0.2),
               spreadRadius: 1,
               blurRadius: 5,
             )],

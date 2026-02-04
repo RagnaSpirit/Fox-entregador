@@ -36,7 +36,7 @@ class _ReferBottomSheetState extends State<ReferBottomSheet> {
           Container(
             height: 4, width: 40,
             decoration: BoxDecoration(
-              color: Theme.of(context).disabledColor.withValues(alpha: 0.5),
+              color: Theme.of(context).disabledColor.withOpacity(0.5),
               borderRadius: BorderRadius.circular(10),
             ),
           ),
@@ -53,7 +53,7 @@ class _ReferBottomSheetState extends State<ReferBottomSheet> {
             child: RichText(text: TextSpan(
                 text: 'referral_bottom_sheet_note'.tr,
                 style: robotoRegular.copyWith(
-                  color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.6),
+                  color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.6),
                   fontSize: Dimensions.fontSizeDefault - 1, height: 1.5,
                 ),
                 children: [TextSpan(
@@ -63,7 +63,7 @@ class _ReferBottomSheetState extends State<ReferBottomSheet> {
                   TextSpan(
                     text: 'wallet_balance'.tr,
                     style: robotoRegular.copyWith(
-                      color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.6),
+                      color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.6),
                       fontSize: Dimensions.fontSizeDefault - 1, height: 1.5,
                     ),
                   )
@@ -76,9 +76,9 @@ class _ReferBottomSheetState extends State<ReferBottomSheet> {
             width: Get.width * 0.9,
             padding: const EdgeInsets.only(left: Dimensions.paddingSizeDefault),
             decoration: BoxDecoration(
-                color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                color: Theme.of(context).disabledColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha: 0.25))
+                border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.25))
             ),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Text(Get.find<ProfileController>().profileModel?.refCode ?? '',style: robotoBold),
@@ -92,7 +92,7 @@ class _ReferBottomSheetState extends State<ReferBottomSheet> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault, vertical: Dimensions.paddingSizeSmall),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).highlightColor.withValues(alpha: 0.2),
+                    color: Theme.of(context).highlightColor.withOpacity(0.2),
                     borderRadius: const BorderRadius.only(topRight: Radius.circular(Dimensions.radiusDefault), bottomRight: Radius.circular(Dimensions.radiusDefault)),
                   ),
                   child: Icon(Icons.copy_rounded,color: Get.isDarkMode ? Theme.of(context).textTheme.bodyMedium!.color : Theme.of(context).primaryColor),

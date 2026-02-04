@@ -63,7 +63,7 @@ class _MyPointViewState extends State<MyPointView> {
 
                 Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                    color: Theme.of(context).disabledColor.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                   ),
                   padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
@@ -73,7 +73,7 @@ class _MyPointViewState extends State<MyPointView> {
                     Text('convert_loyalty_point_to_wallet_money_once_you_have_enough_balance'.tr,
                       style: robotoRegular.copyWith(
                           fontSize: Dimensions.fontSizeSmall,
-                          color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.7)
+                          color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.7)
                       ),
                     ),
 
@@ -305,7 +305,7 @@ class _MyPointViewState extends State<MyPointView> {
           textAlign: TextAlign.center,
           style: robotoRegular.copyWith(
             fontSize: Dimensions.fontSizeSmall,
-            color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.7),
+            color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.7),
           ),
         ),
       ),

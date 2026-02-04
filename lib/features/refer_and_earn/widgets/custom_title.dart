@@ -35,7 +35,7 @@ class CustomTitle extends StatelessWidget {
         if(count!=null)
           Text(
             count.toString(),
-            style: robotoBold.copyWith(fontSize: Dimensions.fontSizeLarge, color:Theme.of(context).textTheme.bodyMedium!.color!.withValues(alpha: 0.5)),
+            style: robotoBold.copyWith(fontSize: Dimensions.fontSizeLarge, color:Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(0.5)),
           ),
       ],
       ),

@@ -301,7 +301,7 @@ class _MyEarningScreenState extends State<MyEarningScreen> {
         child: Text(
           title,
           style: robotoMedium.copyWith(
-            color: _selectedTabIndex == index ? Theme.of(context).cardColor : Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.6),
+            color: _selectedTabIndex == index ? Theme.of(context).cardColor : Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.6),
             fontSize: Dimensions.fontSizeLarge,
           ),
         ),
@@ -317,7 +317,7 @@ class _MyEarningScreenState extends State<MyEarningScreen> {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-        border: Border.all(color: Theme.of(context).disabledColor.withValues(alpha: 0.3), width: 1),
+        border: Border.all(color: Theme.of(context).disabledColor.withOpacity(0.3), width: 1),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Image.asset(image, height: 30, width: 30),

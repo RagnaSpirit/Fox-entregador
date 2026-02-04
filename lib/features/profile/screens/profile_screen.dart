@@ -153,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: CupertinoSwitch(
                             value: profileController.profileModel!.active == 1,
                             activeTrackColor: Theme.of(context).primaryColor,
-                            inactiveTrackColor: Theme.of(context).primaryColor.withValues(alpha: 0.5),
+                            inactiveTrackColor: Theme.of(context).primaryColor.withOpacity(0.5),
                             onChanged: (bool isActive) async {
                               if(!isActive && orderController.currentOrderList!.isNotEmpty) {
                                 showCustomBottomSheet(
@@ -201,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 Get.back();
                                               },
                                               buttonText: 'cancel'.tr,
-                                              backgroundColor: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                                              backgroundColor: Theme.of(context).disabledColor.withOpacity(0.1),
                                               fontColor: Theme.of(context).disabledColor,
                                               isBorder: true,
                                             ),
@@ -267,7 +267,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: CupertinoSwitch(
                         value: profileController.backgroundNotification,
                         activeTrackColor: Theme.of(context).primaryColor,
-                        inactiveTrackColor: Theme.of(context).primaryColor.withValues(alpha: 0.5),
+                        inactiveTrackColor: Theme.of(context).primaryColor.withOpacity(0.5),
                         onChanged: (bool isActive) {
                           showBgNotificationBottomSheet(profileController.backgroundNotification);
                         },
@@ -461,7 +461,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
       margin: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
       decoration: BoxDecoration(
-        color: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+        color: Theme.of(context).disabledColor.withOpacity(0.2),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Text(
