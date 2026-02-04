@@ -132,7 +132,7 @@ class TransactionItemWidget extends StatelessWidget {
                   if(fromWalletEarning)
                     Container(
                       decoration: BoxDecoration(
-                        color: statusColor.withValues(alpha: 0.1),
+                        color: statusColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
                       ),
                       padding: const EdgeInsets.symmetric(

@@ -109,7 +109,7 @@ class LocationAccessDialog extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+                  color: Theme.of(context).disabledColor.withOpacity(0.2),
                 ),
                 padding: const EdgeInsets.all(4.0),
                 child: const Icon(Icons.close, size: 14),

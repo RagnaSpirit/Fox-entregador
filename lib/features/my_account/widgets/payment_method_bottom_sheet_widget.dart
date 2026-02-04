@@ -33,7 +33,7 @@ class _PaymentMethodBottomSheetWidgetState extends State<PaymentMethodBottomShee
           Container(
             height: 5, width: 50,
             decoration: BoxDecoration(
-              color: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+              color: Theme.of(context).disabledColor.withOpacity(0.2),
               borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
             ),
           ),
@@ -82,7 +82,7 @@ class _PaymentMethodBottomSheetWidgetState extends State<PaymentMethodBottomShee
                       decoration: BoxDecoration(
                         color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                        border: Border.all(color: Theme.of(context).disabledColor.withValues(alpha: 0.4)),
+                        border: Border.all(color: Theme.of(context).disabledColor.withOpacity(0.4)),
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault, vertical: Dimensions.paddingSizeLarge),
                       child: Row(children: [

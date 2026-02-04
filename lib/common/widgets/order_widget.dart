@@ -55,7 +55,7 @@ class OrderWidget extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: 2),
                   decoration: BoxDecoration(
-                    color: orderModel.paymentStatus == 'paid' ? ColorResources.green.withValues(alpha: 0.1) : ColorResources.red.withValues(alpha: 0.1),
+                    color: orderModel.paymentStatus == 'paid' ? ColorResources.green.withOpacity(0.1) : ColorResources.red.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                   ),
                   child: Text(
@@ -116,7 +116,7 @@ class OrderWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
             decoration: BoxDecoration(
-              color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+              color: Theme.of(context).disabledColor.withOpacity(0.1),
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(Dimensions.radiusDefault), bottomRight: Radius.circular(Dimensions.radiusDefault),
               ),
@@ -135,7 +135,7 @@ class OrderWidget extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                    side: BorderSide(color: Theme.of(context).disabledColor.withValues(alpha: 0.3)),
+                    side: BorderSide(color: Theme.of(context).disabledColor.withOpacity(0.3)),
                   ),
                 ),
                 child: Text(
@@ -173,7 +173,7 @@ class OrderWidget extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                    side: BorderSide(color: Theme.of(context).disabledColor.withValues(alpha: 0.5)),
+                    side: BorderSide(color: Theme.of(context).disabledColor.withOpacity(0.5)),
                   ),
                 ),
                 child: Row(children: [

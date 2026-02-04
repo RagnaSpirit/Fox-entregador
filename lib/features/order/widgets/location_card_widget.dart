@@ -77,7 +77,7 @@ class LocationCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
+            color: Colors.black.withOpacity(0.08),
             blurRadius: 12,
           ),
         ],
@@ -130,7 +130,7 @@ class LocationCardWidget extends StatelessWidget {
             decoration: BoxDecoration(
               color: Theme.of(context)
                   .disabledColor
-                  .withValues(alpha: 0.04),
+                  .withOpacity(0.04),
               borderRadius: const BorderRadius.vertical(
                 bottom: Radius.circular(Dimensions.radiusDefault),
               ),
@@ -292,7 +292,7 @@ class _DistanceBlock extends StatelessWidget {
           decoration: BoxDecoration(
             color: Theme.of(context)
                 .primaryColor
-                .withValues(alpha: 0.15),
+                .withOpacity(0.15),
             borderRadius:
             BorderRadius.circular(Dimensions.radiusDefault),
           ),

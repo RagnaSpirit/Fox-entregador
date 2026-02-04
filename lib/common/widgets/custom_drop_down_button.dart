@@ -113,7 +113,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   OutlineInputBorder _border() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius ?? Dimensions.radiusDefault)),
-      borderSide: BorderSide(width: 1, color: widget.isBorder ? Theme.of(context).disabledColor.withValues(alpha: 0.2) : Colors.transparent),
+      borderSide: BorderSide(width: 1, color: widget.isBorder ? Theme.of(context).disabledColor.withOpacity(0.2) : Colors.transparent),
     );
   }
 }

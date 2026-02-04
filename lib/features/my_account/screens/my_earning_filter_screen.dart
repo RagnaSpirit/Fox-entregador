@@ -66,13 +66,13 @@ class _MyEarningFilterScreenState extends State<MyEarningFilterScreen> {
                     decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                      border: Border.all(color: Theme.of(context).disabledColor.withValues(alpha: 0.3)),
+                      border: Border.all(color: Theme.of(context).disabledColor.withOpacity(0.3)),
                     ),
                     child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
 
                       myAccountController.from != null && myAccountController.to != null ? Text(
                         '${myAccountController.from} - ${myAccountController.to}', style: robotoRegular,
-                      ) : Text('custom_date_range'.tr, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color?.withValues(alpha: 0.5))),
+                      ) : Text('custom_date_range'.tr, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color?.withOpacity(0.5))),
 
                       InkWell(
                         onTap: () {
@@ -101,7 +101,7 @@ class _MyEarningFilterScreenState extends State<MyEarningFilterScreen> {
               Expanded(
                 child: CustomButtonWidget(
                   buttonText: 'reset'.tr,
-                  backgroundColor: Theme.of(context).disabledColor.withValues(alpha: 0.25),
+                  backgroundColor: Theme.of(context).disabledColor.withOpacity(0.25),
                   fontColor: Theme.of(context).textTheme.bodyLarge!.color,
                   onPressed: () {
                     // myAccountController.resetEarningFilter();

@@ -17,7 +17,7 @@ class DeliveryConfirmationSection extends StatelessWidget {
       return Container(
         padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
         decoration: BoxDecoration(
-          color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+          color: Theme.of(context).disabledColor.withOpacity(0.1),
           borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -66,7 +66,7 @@ class DeliveryConfirmationSection extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-          color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+          color: Theme.of(context).disabledColor.withOpacity(0.1),
         ),
         child: Icon(
           CupertinoIcons.camera_fill,

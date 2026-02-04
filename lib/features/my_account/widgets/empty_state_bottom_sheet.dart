@@ -30,7 +30,7 @@ class EmptyStateBottomSheet extends StatelessWidget {
           Container(
             height: 5, width: 50,
             decoration: BoxDecoration(
-              color: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+              color: Theme.of(context).disabledColor.withOpacity(0.2),
               borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
             ),
           ),
@@ -43,7 +43,7 @@ class EmptyStateBottomSheet extends StatelessWidget {
             padding: const EdgeInsets.all(40),
             width: context.width,
             decoration: BoxDecoration(
-              color: Theme.of(context).hintColor.withValues(alpha: 0.1),
+              color: Theme.of(context).hintColor.withOpacity(0.1),
               borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
             ),
             child: Column(children: [
@@ -56,14 +56,14 @@ class EmptyStateBottomSheet extends StatelessWidget {
 
               Text(
                 noPaymentMethod ? 'no_payment_method_is_available'.tr : '${'you_do_not_have_sufficient_balance_to_pay_the_minimum_payable_balance_is'.tr} ${PriceConverterHelper.convertPrice(Get.find<SplashController>().configModel!.minAmountToPayDm)}',
-                style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeDefault, color: Theme.of(context).textTheme.bodyLarge!.color?.withValues(alpha: 0.5)),
+                style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeDefault, color: Theme.of(context).textTheme.bodyLarge!.color?.withOpacity(0.5)),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: noPaymentMethod ? Dimensions.paddingSizeExtraSmall : 0),
 
               noPaymentMethod ? Text(
                 'please_contact_the_admin'.tr,
-                style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color?.withValues(alpha: 0.5)),
+                style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color?.withOpacity(0.5)),
                 textAlign: TextAlign.center,
               ) : const SizedBox(),
 

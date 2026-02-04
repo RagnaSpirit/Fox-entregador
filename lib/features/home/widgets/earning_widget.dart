@@ -14,7 +14,7 @@ class EarningWidget extends StatelessWidget {
     return Expanded(child: Column(children: [
       Text(
         title,
-        style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).cardColor.withValues(alpha: 0.8)),
+        style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).cardColor.withOpacity(0.8)),
       ),
       const SizedBox(height: Dimensions.paddingSizeSmall),
       amount != null ? Text(

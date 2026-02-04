@@ -26,12 +26,12 @@ class CustomButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ButtonStyle flatButtonStyle = TextButton.styleFrom(
-      backgroundColor: onPressed == null ? (disabledColor ?? Theme.of(context).disabledColor.withValues(alpha: 0.5)) : transparent ? Colors.transparent : backgroundColor ?? Theme.of(context).primaryColor,
+      backgroundColor: onPressed == null ? (disabledColor ?? Theme.of(context).disabledColor.withOpacity(0.5)) : transparent ? Colors.transparent : backgroundColor ?? Theme.of(context).primaryColor,
       minimumSize: Size(width != null ? width! : Dimensions.webMaxWidth, height != null ? height! : 50),
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radius),
-        side: isBorder ? BorderSide(color: Theme.of(context).disabledColor.withValues(alpha: 0.5)) : BorderSide.none,
+        side: isBorder ? BorderSide(color: Theme.of(context).disabledColor.withOpacity(0.5)) : BorderSide.none,
       ),
     );
 

@@ -73,7 +73,7 @@ class _ParcelReturnDateTimeBottomSheetState extends State<ParcelReturnDateTimeBo
         child: Container(
           height: 5, width: 40,
           decoration: BoxDecoration(
-            color: Theme.of(context).disabledColor.withValues(alpha: 0.5),
+            color: Theme.of(context).disabledColor.withOpacity(0.5),
             borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
           ),
         ),
@@ -122,7 +122,7 @@ class _ParcelReturnDateTimeBottomSheetState extends State<ParcelReturnDateTimeBo
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-          border: Border.all(color: Theme.of(context).disabledColor.withValues(alpha: 0.3)),
+          border: Border.all(color: Theme.of(context).disabledColor.withOpacity(0.3)),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text('date'.tr, style: robotoMedium),
@@ -144,7 +144,7 @@ class _ParcelReturnDateTimeBottomSheetState extends State<ParcelReturnDateTimeBo
                     margin: EdgeInsets.only(right: index == controller.availableDates.length - 1 ? 0 : Dimensions.paddingSizeSmall),
                     padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge, vertical: Dimensions.paddingSizeSmall),
                     decoration: BoxDecoration(
-                      color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                      color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).disabledColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(Dimensions.radiusMedium),
                     ),
                     child: Column(
@@ -177,7 +177,7 @@ class _ParcelReturnDateTimeBottomSheetState extends State<ParcelReturnDateTimeBo
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-          border: Border.all(color: Theme.of(context).disabledColor.withValues(alpha: 0.3)),
+          border: Border.all(color: Theme.of(context).disabledColor.withOpacity(0.3)),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text('estimated_delivery_time'.tr, style: robotoMedium),
@@ -215,7 +215,7 @@ class _ParcelReturnDateTimeBottomSheetState extends State<ParcelReturnDateTimeBo
                 height: 70,
                 padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault, vertical: Dimensions.paddingSizeExtraSmall),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                  color: Theme.of(context).disabledColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(Dimensions.radiusMedium),
                 ),
                 child: Row(
@@ -274,7 +274,7 @@ class _ParcelReturnDateTimeBottomSheetState extends State<ParcelReturnDateTimeBo
         Expanded(
           child: CustomButtonWidget(
             buttonText: 'cancel'.tr,
-            backgroundColor: Theme.of(context).disabledColor.withValues(alpha: 0.3),
+            backgroundColor: Theme.of(context).disabledColor.withOpacity(0.3),
             fontColor: Theme.of(context).textTheme.bodyLarge!.color,
             onPressed: () {
               Get.back();

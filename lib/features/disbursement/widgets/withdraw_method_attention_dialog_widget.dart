@@ -27,7 +27,7 @@ class WithdrawMethodAttentionDialogWidget extends StatelessWidget {
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Theme.of(context).disabledColor.withValues(alpha: 0.05),
+                color: Theme.of(context).disabledColor.withOpacity(0.05),
               ),
               child: const Icon(Icons.close, size: 15),
             ),

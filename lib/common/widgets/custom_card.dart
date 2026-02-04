@@ -21,7 +21,7 @@ class CustomCard extends StatelessWidget {
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(borderRadius ?? Dimensions.radiusDefault),
         border: isBorder ? Border.all(color: Get.isDarkMode ? const Color(0xff171515) : const Color(0xff9a9a9a), width: 0.2) : null,
-        boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.white.withValues(alpha: 0.05) : Colors.black.withValues(alpha: 0.05), blurRadius: 20, spreadRadius: 0, offset: const Offset(0, 5))],
+        boxShadow: [BoxShadow(color: Get.isDarkMode ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.05), blurRadius: 20, spreadRadius: 0, offset: const Offset(0, 5))],
       ),
       child: child,
     );

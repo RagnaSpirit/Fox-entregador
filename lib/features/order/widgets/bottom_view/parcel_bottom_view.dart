@@ -145,7 +145,7 @@ class ParcelBottomView extends StatelessWidget {
           isLtr: Get.find<LocalizationController>().isLtr,
           boxShadow: const BoxShadow(blurRadius: 0),
           buttonColor: Theme.of(Get.context!).primaryColor,
-          backgroundColor: Theme.of(Get.context!).primaryColor.withValues(alpha: 0.1),
+          backgroundColor: Theme.of(Get.context!).primaryColor.withOpacity(0.1),
           baseColor: Theme.of(Get.context!).primaryColor,
         ),
 
@@ -179,7 +179,7 @@ class ParcelBottomView extends StatelessWidget {
           isLtr: Get.find<LocalizationController>().isLtr,
           boxShadow: const BoxShadow(blurRadius: 0),
           buttonColor: Theme.of(Get.context!).primaryColor,
-          backgroundColor: Theme.of(Get.context!).primaryColor.withValues(alpha: 0.1),
+          backgroundColor: Theme.of(Get.context!).primaryColor.withOpacity(0.1),
           baseColor: Theme.of(Get.context!).primaryColor,
         ),
 
@@ -239,7 +239,7 @@ class ParcelBottomView extends StatelessWidget {
         isLtr: Get.find<LocalizationController>().isLtr,
         boxShadow: const BoxShadow(blurRadius: 0),
         buttonColor: Theme.of(Get.context!).primaryColor,
-        backgroundColor: Theme.of(Get.context!).primaryColor.withValues(alpha: 0.1),
+        backgroundColor: Theme.of(Get.context!).primaryColor.withOpacity(0.1),
         baseColor: Theme.of(Get.context!).primaryColor,
         action: () {
           showCustomBottomSheet(

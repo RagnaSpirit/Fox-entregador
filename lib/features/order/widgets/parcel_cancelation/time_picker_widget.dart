@@ -22,7 +22,7 @@ class _MinMaxTimePickerWidgetState extends State<TimePickerWidget> {
       width: 75, height: 70,
       padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
       decoration: BoxDecoration(
-        color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+        color: Theme.of(context).disabledColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
       ),
       child: CarouselSlider.builder(
