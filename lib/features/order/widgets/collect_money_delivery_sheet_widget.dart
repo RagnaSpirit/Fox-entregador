@@ -37,7 +37,7 @@ class CollectMoneyDeliverySheetWidget extends StatelessWidget {
               height: 5, width: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radiusLarge),
-                color: Theme.of(context).disabledColor.withValues(alpha: 0.5),
+                color: Theme.of(context).disabledColor.withOpacity(0.5),
               ),
             ),
 

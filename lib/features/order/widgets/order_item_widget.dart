@@ -100,7 +100,7 @@ class OrderItemWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeExtraSmall, horizontal: Dimensions.paddingSizeSmall),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                  color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                  color: Theme.of(context).primaryColor.withOpacity(0.1),
                 ),
                 child: Text(
                   Get.find<SplashController>().getModule(order.moduleType).unit! ? orderDetails.itemDetails!.unitType ?? ''

@@ -107,7 +107,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        border: Border.all(color: Theme.of(context).disabledColor.withValues(alpha: 0.5)),
+                        border: Border.all(color: Theme.of(context).disabledColor.withOpacity(0.5)),
                         color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).cardColor,
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeLarge),

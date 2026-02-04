@@ -13,7 +13,7 @@ class ProfileCardWidget extends StatelessWidget {
       height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-        color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+        color: Theme.of(context).disabledColor.withOpacity(0.1),
       ),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text(data, style: robotoMedium.copyWith(
@@ -21,7 +21,7 @@ class ProfileCardWidget extends StatelessWidget {
         )),
         const SizedBox(height: Dimensions.paddingSizeSmall),
         Text(title, style: robotoRegular.copyWith(
-          fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.7),
+          fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.7),
         )),
       ]),
     ));

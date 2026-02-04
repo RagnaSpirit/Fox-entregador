@@ -92,7 +92,7 @@ class _WithdrawMethodScreenState extends State<WithdrawMethodScreen> {
                                   const SizedBox(width: Dimensions.paddingSizeExtraSmall),
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: Colors.blue.withValues(alpha: 0.1),
+                                      color: Colors.blue.withOpacity(0.1),
                                       borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
                                     ),
                                     padding: const EdgeInsets.all(2),
@@ -123,7 +123,7 @@ class _WithdrawMethodScreenState extends State<WithdrawMethodScreen> {
                                           width: 24, height: 24,
                                           child: Checkbox(
                                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.radiusSmall - 1)),
-                                            side: BorderSide(color: Theme.of(context).disabledColor.withValues(alpha: 0.5)),
+                                            side: BorderSide(color: Theme.of(context).disabledColor.withOpacity(0.5)),
                                             value: method.isDefault,
                                             activeColor: Theme.of(context).primaryColor,
                                             onChanged: (value) {
@@ -191,7 +191,7 @@ class _WithdrawMethodScreenState extends State<WithdrawMethodScreen> {
                           padding: EdgeInsets.all(Dimensions.paddingSizeSmall),
                           margin: EdgeInsets.only(left: Dimensions.paddingSizeSmall, right: Dimensions.paddingSizeSmall, bottom: Dimensions.paddingSizeSmall),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).disabledColor.withValues(alpha: 0.06),
+                            color: Theme.of(context).disabledColor.withOpacity(0.06),
                             borderRadius: BorderRadius.all(Radius.circular(Dimensions.radiusDefault)),
                           ),
                           child: ListView.builder(
@@ -259,7 +259,7 @@ class EmptyWithdrawScreen extends StatelessWidget {
           const SizedBox(height: Dimensions.paddingSizeDefault),
 
           Text('add_withdraw_hint'.tr, style: robotoRegular.copyWith(
-              fontSize: Dimensions.fontSizeDefault, height: 1.6, color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.5)
+              fontSize: Dimensions.fontSizeDefault, height: 1.6, color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.5)
           ), textAlign: TextAlign.center),
 
           const SizedBox(height: Dimensions.paddingSizeExtraLarge),

@@ -7,30 +7,35 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ThemeController extends GetxController implements GetxService {
   final SharedPreferences sharedPreferences;
   ThemeController({required this.sharedPreferences}) {
-    _loadCurrentTheme();
-    _startThemeTimer();
+    _syncThemeWithTime();
+    _startTimeObserver();
   }
 
   bool _darkTheme = false;
   bool get darkTheme => _darkTheme;
-  Timer? _themeTimer;
+  Timer? _timer;
 
-  void toggleTheme() {
-    _darkTheme = !_darkTheme;
-    sharedPreferences.setBool(AppConstants.theme, _darkTheme);
-    update();
+  void _startTimeObserver() {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(minutes: 1), (_) {
+      _syncThemeWithTime();
+    });
+  }
+
+  void _syncThemeWithTime() {
+    final int hour = DateTime.now().hour;
+    final bool isNight = hour < 6 || hour >= 18;
+    if (_darkTheme != isNight) {
+      _darkTheme = isNight;
+      sharedPreferences.setBool(AppConstants.theme, _darkTheme);
+      update();
+    }
   }
 
   @override
   void onClose() {
-    _themeTimer?.cancel();
+    _timer?.cancel();
     super.onClose();
-  }
-
-  void _loadCurrentTheme() async {
-    _darkTheme = sharedPreferences.getBool(AppConstants.theme) ?? false;
-    _applyTimeBasedTheme();
-    update();
   }
 
   void _startThemeTimer() {

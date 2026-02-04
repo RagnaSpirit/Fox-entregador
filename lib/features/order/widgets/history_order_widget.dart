@@ -33,7 +33,7 @@ class HistoryOrderWidget extends StatelessWidget {
             height: 70, width: 70, alignment: Alignment.center,
             decoration: parcel ? BoxDecoration(
               borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-              color: Theme.of(context).primaryColor.withValues(alpha: 0.2),
+              color: Theme.of(context).primaryColor.withOpacity(0.2),
             ) : null,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
@@ -62,7 +62,7 @@ class HistoryOrderWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                    color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                    color: Theme.of(context).primaryColor.withOpacity(0.1),
                   ),
                   child: Text('parcel'.tr, style: robotoMedium.copyWith(
                     fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).primaryColor,

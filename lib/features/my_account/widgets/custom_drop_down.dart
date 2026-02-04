@@ -35,7 +35,7 @@ class CustomDropDown extends StatelessWidget {
         items: itemList,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeExtraSmall, horizontal: Dimensions.paddingSizeExtraSmall),
-          child: Text(title, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withValues(alpha: 0.5))),
+          child: Text(title, style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.5))),
         ),
       ),
     );

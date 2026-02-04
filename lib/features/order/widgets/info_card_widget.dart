@@ -3,9 +3,9 @@ import 'package:sixam_mart_delivery/util/dimensions.dart';
 import 'package:sixam_mart_delivery/util/styles.dart';
 import 'package:sixam_mart_delivery/common/widgets/custom_image_widget.dart';
 import 'package:sixam_mart_delivery/common/widgets/custom_snackbar_widget.dart';
+import 'package:sixam_mart_delivery/helper/map_launcher_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class InfoCardWidget extends StatelessWidget {
   final String title;
@@ -51,9 +51,19 @@ class InfoCardWidget extends StatelessWidget {
             Text(name!, style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall)),
             const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
-            Text(
-              address!.address ?? '',
-              style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor), maxLines: 2, overflow: TextOverflow.ellipsis,
+            GestureDetector(
+              onTap: (latitude == null || longitude == null)
+                  ? null
+                  : () => MapLauncherHelper.openMap(
+                        latitude: double.tryParse(latitude ?? '') ?? 0,
+                        longitude: double.tryParse(longitude ?? '') ?? 0,
+                      ),
+              child: Text(
+                address!.address ?? '',
+                style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeSmall, color: Theme.of(context).disabledColor),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             SizedBox(height: address!.address != null ? Dimensions.paddingSizeExtraSmall : 0),
 
@@ -100,12 +110,10 @@ class InfoCardWidget extends StatelessWidget {
 
               TextButton.icon(
                 onPressed: () async {
-                  String url ='https://www.google.com/maps/dir/?api=1&destination=$latitude,$longitude&mode=d';
-                  if (await canLaunchUrlString(url)) {
-                    await launchUrlString(url, mode: LaunchMode.externalApplication);
-                  } else {
-                    throw '${'could_not_launch'.tr} $url';
-                  }
+                  await MapLauncherHelper.openMap(
+                    latitude: double.tryParse(latitude ?? '') ?? 0,
+                    longitude: double.tryParse(longitude ?? '') ?? 0,
+                  );
                 },
                 icon: Icon(Icons.directions, color: Theme.of(context).disabledColor, size: 20),
                 label: Text(

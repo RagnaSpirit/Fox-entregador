@@ -13,7 +13,6 @@ import 'package:sixam_mart_delivery/features/profile/controllers/profile_control
 import 'package:sixam_mart_delivery/features/profile/widgets/notification_status_change_bottom_sheet.dart';
 import 'package:sixam_mart_delivery/features/refer_and_earn/screens/refer_and_earn_screen.dart';
 import 'package:sixam_mart_delivery/features/splash/controllers/splash_controller.dart';
-import 'package:sixam_mart_delivery/common/controllers/theme_controller.dart';
 import 'package:sixam_mart_delivery/helper/route_helper.dart';
 import 'package:sixam_mart_delivery/util/app_constants.dart';
 import 'package:sixam_mart_delivery/util/dimensions.dart';
@@ -154,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: CupertinoSwitch(
                             value: profileController.profileModel!.active == 1,
                             activeTrackColor: Theme.of(context).primaryColor,
-                            inactiveTrackColor: Theme.of(context).primaryColor.withValues(alpha: 0.5),
+                            inactiveTrackColor: Theme.of(context).primaryColor.withOpacity(0.5),
                             onChanged: (bool isActive) async {
                               if(!isActive && orderController.currentOrderList!.isNotEmpty) {
                                 showCustomBottomSheet(
@@ -202,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 Get.back();
                                               },
                                               buttonText: 'cancel'.tr,
-                                              backgroundColor: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                                              backgroundColor: Theme.of(context).disabledColor.withOpacity(0.1),
                                               fontColor: Theme.of(context).disabledColor,
                                               isBorder: true,
                                             ),
@@ -229,11 +228,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ]),
                 ),
               ),
-              const SizedBox(height: Dimensions.paddingSizeSmall),
-
-              ProfileButtonWidget(icon: Icons.dark_mode_outlined, title: 'dark_mode'.tr, isButtonActive: Get.isDarkMode, onTap: () {
-                Get.find<ThemeController>().toggleTheme();
-              }),
               const SizedBox(height: Dimensions.paddingSizeSmall),
 
               GetBuilder<AuthController>(builder: (authController) {
@@ -273,7 +267,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: CupertinoSwitch(
                         value: profileController.backgroundNotification,
                         activeTrackColor: Theme.of(context).primaryColor,
-                        inactiveTrackColor: Theme.of(context).primaryColor.withValues(alpha: 0.5),
+                        inactiveTrackColor: Theme.of(context).primaryColor.withOpacity(0.5),
                         onChanged: (bool isActive) {
                           showBgNotificationBottomSheet(profileController.backgroundNotification);
                         },
@@ -467,7 +461,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
       margin: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
       decoration: BoxDecoration(
-        color: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+        color: Theme.of(context).disabledColor.withOpacity(0.2),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Text(

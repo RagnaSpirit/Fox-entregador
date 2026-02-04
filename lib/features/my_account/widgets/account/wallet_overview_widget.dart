@@ -43,14 +43,14 @@ class WalletOverviewWidget extends StatelessWidget {
                       padding: EdgeInsets.all(Dimensions.paddingSizeSmall),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                        color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                        color: Theme.of(context).disabledColor.withOpacity(0.1),
                       ),
                       child: Row(children: [
 
                         Expanded(
                           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
-                            Text('pay_able_balance'.tr, style: robotoSemiBold.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.5))),
+                            Text('pay_able_balance'.tr, style: robotoSemiBold.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5))),
                             const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                             Text(
@@ -59,7 +59,7 @@ class WalletOverviewWidget extends StatelessWidget {
                             ),
                             const SizedBox(height: Dimensions.paddingSizeLarge),
 
-                            Text('withdrawable_balance'.tr, style: robotoSemiBold.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.5))),
+                            Text('withdrawable_balance'.tr, style: robotoSemiBold.copyWith(color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5))),
                             const SizedBox(height: Dimensions.paddingSizeExtraSmall),
 
                             Text(
@@ -88,7 +88,7 @@ class WalletOverviewWidget extends StatelessWidget {
                                             height: 45,
                                             child: CustomButtonWidget(
                                               onPressed: () => Get.back(),
-                                              backgroundColor: Theme.of(context).disabledColor.withValues(alpha: 0.5),
+                                              backgroundColor: Theme.of(context).disabledColor.withOpacity(0.5),
                                               buttonText: 'cancel'.tr,
                                             ),
                                           ),
@@ -137,7 +137,7 @@ class WalletOverviewWidget extends StatelessWidget {
                       padding: EdgeInsets.all(Dimensions.paddingSizeSmall),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                        color: Theme.of(context).disabledColor.withValues(alpha: 0.1),
+                        color: Theme.of(context).disabledColor.withOpacity(0.1),
                       ),
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
@@ -227,21 +227,21 @@ class WalletOverviewWidget extends StatelessWidget {
                             title: 'pending_withdraw'.tr,
                             amount: profileController.profileModel?.pendingWithdraw ?? 0,
                             image: Images.pendingWithdrawIcon,
-                            borderColor: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+                            borderColor: Theme.of(context).disabledColor.withOpacity(0.2),
                           ),
 
                           AmountCardWidget(
                             title: 'total_withdrawn'.tr,
                             amount: profileController.profileModel?.totalWithdrawn ?? 0,
                             image: Images.alreadyWithdrawIcon,
-                            borderColor: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+                            borderColor: Theme.of(context).disabledColor.withOpacity(0.2),
                           ),
 
                           AmountCardWidget(
                             title: 'cash_in_hand'.tr,
                             amount: profileController.profileModel?.cashInHands ?? 0,
                             image: Images.pendingWithdrawIcon,
-                            borderColor: Theme.of(context).disabledColor.withValues(alpha: 0.2),
+                            borderColor: Theme.of(context).disabledColor.withOpacity(0.2),
                           ),
 
                         ]),

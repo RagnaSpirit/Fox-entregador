@@ -31,8 +31,8 @@ class ReferralEarningScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.paddingSizeDefault),
                   color: Theme.of(context).cardColor,
-                  border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha: 0.1)),
-                  boxShadow: [BoxShadow(color: Theme.of(context).disabledColor.withValues(alpha: 0.3), blurRadius: 10)],
+                  border: Border.all(color: Theme.of(context).primaryColor.withOpacity(0.1)),
+                  boxShadow: [BoxShadow(color: Theme.of(context).disabledColor.withOpacity(0.3), blurRadius: 10)],
                 ),
                 padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -87,7 +87,7 @@ class ReferralEarningScreen extends StatelessWidget {
 
                 ]),
               ),
-              Divider(thickness: .25,color: Theme.of(context).primaryColor.withValues(alpha: 0.25)),
+              Divider(thickness: .25,color: Theme.of(context).primaryColor.withOpacity(0.25)),
 
               (referAndEarnController.referralModel?.refrealEarnings != null && !referAndEarnController.isLoading) ? (referAndEarnController.referralModel!.refrealEarnings!.isNotEmpty) ? Expanded(
                 child: SingleChildScrollView(
@@ -109,7 +109,7 @@ class ReferralEarningScreen extends StatelessWidget {
                         return EarningCartWidget(transaction: referAndEarnController.referralModel!.refrealEarnings![index]);
                       },
                       separatorBuilder: (context, index){
-                        return Divider(height: 25, thickness: 0.5,color: Theme.of(context).hintColor.withValues(alpha: 0.75));
+                        return Divider(height: 25, thickness: 0.5,color: Theme.of(context).hintColor.withOpacity(0.75));
                       },
                     ),
                   ),

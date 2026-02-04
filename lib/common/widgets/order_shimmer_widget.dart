@@ -15,7 +15,7 @@ class OrderShimmerWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-        border: Border.all(color: Theme.of(context).disabledColor.withValues(alpha: 0.1), width: 1.5),
+        border: Border.all(color: Theme.of(context).disabledColor.withOpacity(0.1), width: 1.5),
       ),
       child: Column(children: [
 

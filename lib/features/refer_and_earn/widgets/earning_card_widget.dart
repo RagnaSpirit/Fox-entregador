@@ -24,7 +24,7 @@ class EarningCartWidget extends StatelessWidget {
 
               Text(
                 '${'trnx'.tr} : ${transaction.transactionId}', maxLines: 1, overflow: TextOverflow.ellipsis,
-                style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.7)),
+                style: robotoRegular.copyWith(color: Theme.of(context).textTheme.bodySmall?.color?.withOpacity(0.7)),
               ),
 
             ])),
