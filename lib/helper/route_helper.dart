@@ -28,6 +28,7 @@ import 'package:sixam_mart_delivery/features/notification/screens/notification_s
 import 'package:sixam_mart_delivery/features/order/screens/order_details_screen.dart';
 import 'package:sixam_mart_delivery/features/order/screens/running_order_screen.dart';
 import 'package:sixam_mart_delivery/features/profile/screens/update_profile_screen.dart';
+import 'package:sixam_mart_delivery/features/profile/screens/score_performance_screen.dart';
 import 'package:sixam_mart_delivery/features/splash/screens/splash_screen.dart';
 import 'package:sixam_mart_delivery/features/update/screens/update_screen.dart';
 import 'package:get/get.dart';
@@ -63,6 +64,7 @@ class RouteHelper {
   static const String myEarningFilter = '/my-earning-filter';
   static const String dmRegistrationSuccess = '/dm-registration-success';
   static const String editWithdrawMethod = '/edit-withdraw-method';
+  static const String scorePerformance = '/score-performance';
 
   static String getInitialRoute({bool? fromOrderDetails}) => '$initial?from_order_details=${fromOrderDetails.toString()}';
   static String getSplashRoute(NotificationBodyModel? body) {
@@ -124,6 +126,7 @@ class RouteHelper {
     String method0 = base64Encode(utf8.encode(jsonEncode(method.toJson())));
     return '$editWithdrawMethod?method=$method0';
   }
+  static String getScorePerformanceRoute() => scorePerformance;
 
   static List<GetPage> routes = [
     GetPage(name: initial, page: () => DashboardScreen(pageIndex: 0, fromOrderDetails: Get.parameters['from_order_details'] == 'true')),
@@ -196,6 +199,7 @@ class RouteHelper {
     GetPage(name: myEarning, page: () => const MyEarningScreen()),
     GetPage(name: myEarningFilter, page: () => const MyEarningFilterScreen()),
     GetPage(name: dmRegistrationSuccess, page: () => const DmRegistrationSuccessScreen()),
+    GetPage(name: scorePerformance, page: () => const ScorePerformanceScreen()),
     GetPage(name: editWithdrawMethod, page: () {
       Methods method = Methods.fromJson(jsonDecode(utf8.decode(base64Url.decode(Get.parameters['method']!.replaceAll(' ', '+')))));
       return EditWithdrawMethodScreen(method: method);
