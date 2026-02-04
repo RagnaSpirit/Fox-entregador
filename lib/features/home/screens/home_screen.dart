@@ -33,7 +33,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   GoogleMapController? _mapController;
   String? _darkMapStyle;
   String? _lightMapStyle;
