@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "53725393548",
+    "project_id": "foxgo-7218c",
+    "storage_bucket": "foxgo-7218c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53725393548:android:88b22d15e688070250c1a9",
+        "android_client_info": {
+          "package_name": "com.foxgodelivery.deliveryman"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMMjNtWUI7-RbWoh0YknlfpcCh2fF-25w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:53725393548:android:6fb5ed801e52499a50c1a9",
+        "android_client_info": {
+          "package_name": "com.foxgodelivery.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMMjNtWUI7-RbWoh0YknlfpcCh2fF-25w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
