@@ -63,6 +63,8 @@ flutter:
     - assets/image/
     - assets/language/
     - assets/notification.mp3
+    - assets/map_light.json
+    - assets/map_dark.json
 
   fonts:
     - family: Roboto

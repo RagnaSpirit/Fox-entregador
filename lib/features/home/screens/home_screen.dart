@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'package:sixam_mart_delivery/common/controllers/theme_controller.dart';
 import 'package:sixam_mart_delivery/features/profile/controllers/profile_controller.dart';
 import 'package:sixam_mart_delivery/features/profile/screens/profile_screen.dart';
 import 'package:sixam_mart_delivery/features/order/controllers/order_controller.dart';
@@ -22,6 +23,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   GoogleMapController? _mapController;
+  String? _darkMapStyle;
+  String? _lightMapStyle;
+  late final ThemeController _themeController;
 
   bool isOnline = false;
   bool mapVisible = true;
@@ -42,6 +46,10 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
+
+    _themeController = Get.find<ThemeController>();
+    _themeController.addListener(_handleThemeChange);
+    _loadMapStyles();
 
     _cardAnimController = AnimationController(
       vsync: this,
@@ -72,8 +80,27 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void dispose() {
     _searchingTimer?.cancel();
+    _themeController.removeListener(_handleThemeChange);
     _cardAnimController.dispose();
     super.dispose();
+  }
+
+  Future<void> _loadMapStyles() async {
+    _lightMapStyle = await rootBundle.loadString('assets/map_light.json');
+    _darkMapStyle = await rootBundle.loadString('assets/map_dark.json');
+    _applyMapStyle();
+  }
+
+  void _handleThemeChange() {
+    _applyMapStyle();
+  }
+
+  void _applyMapStyle() {
+    final controller = _mapController;
+    if (controller == null) return;
+    final style = Get.isDarkMode ? _darkMapStyle : _lightMapStyle;
+    if (style == null) return;
+    controller.setMapStyle(style);
   }
 
   void toggleOnline() {
@@ -127,7 +154,10 @@ class _HomeScreenState extends State<HomeScreen>
               myLocationEnabled: true,
               myLocationButtonEnabled: false,
               zoomControlsEnabled: false,
-              onMapCreated: (controller) => _mapController = controller,
+              onMapCreated: (controller) {
+                _mapController = controller;
+                _applyMapStyle();
+              },
             ),
 
           /// TOPO
