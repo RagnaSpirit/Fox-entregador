@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sixam_mart_delivery/features/order/controllers/order_controller.dart';
+import 'package:sixam_mart_delivery/features/order/screens/order_location_screen.dart';
 import 'package:sixam_mart_delivery/features/order/widgets/order_requset_widget.dart';
 
 class OrderRequestScreen extends StatelessWidget {
@@ -21,10 +22,21 @@ class OrderRequestScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             itemCount: orderController.latestOrderList!.length,
             itemBuilder: (context, index) {
+              final orderModel = orderController.latestOrderList![index];
               return OrderRequestWidget(
-                orderModel: orderController.latestOrderList![index],
+                orderModel: orderModel,
                 index: index,
-                onAccept: () => onTap(),
+                onAccept: () {
+                  onTap();
+                  Get.to(
+                    () => OrderLocationScreen(
+                      orderModel: orderModel,
+                      orderController: orderController,
+                      index: index,
+                      onTap: () {},
+                    ),
+                  );
+                },
                 onIgnore: () {},
               );
             },
