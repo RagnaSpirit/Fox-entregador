@@ -75,15 +75,20 @@ class MyApp extends StatelessWidget {
       _route();
     }
 
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.dark,
-      systemNavigationBarColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.dark,
-    ));
-
     return GetBuilder<ThemeController>(builder: (themeController) {
+      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: themeController.darkTheme
+            ? Brightness.light
+            : Brightness.dark,
+        statusBarBrightness: themeController.darkTheme
+            ? Brightness.light
+            : Brightness.dark,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: themeController.darkTheme
+            ? Brightness.light
+            : Brightness.dark,
+      ));
       return GetBuilder<LocalizationController>(builder: (localizeController) {
         return GetBuilder<SplashController>(builder: (splashController) {
           return (GetPlatform.isWeb && splashController.configModel == null) ? const SizedBox() : GetMaterialApp(
