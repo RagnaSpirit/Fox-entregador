@@ -898,8 +898,8 @@ class _DeliveryRequestCard extends StatelessWidget {
             ? LatLng(snapshot.data!.latitude, snapshot.data!.longitude)
             : (profileController.recordLocationBody != null
                 ? LatLng(
-                    profileController.recordLocationBody!.latitude,
-                    profileController.recordLocationBody!.longitude,
+                    (profileController.recordLocationBody?.latitude ?? 0.0),
+                    (profileController.recordLocationBody?.longitude ?? 0.0),
                   )
                 : null);
         final double distance = Get.find<AddressController>().getRestaurantDistance(
