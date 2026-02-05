@@ -275,276 +275,410 @@ class _HomeScreenState extends State<HomeScreen>
         builder: (profileController) {
           final bool isOnline = profileController.profileModel?.active == 1;
           _syncSearchingStatus(isOnline);
-          return Stack(
-            children: [
-              if (mapVisible)
-                GetBuilder<ThemeController>(
-                  builder: (themeController) {
-                    _applyMapStyle(themeController.darkTheme);
-                    return GoogleMap(
-                      initialCameraPosition: _initialCameraPosition,
-                      myLocationEnabled: true,
-                      myLocationButtonEnabled: false,
-                      zoomControlsEnabled: false,
-                      onMapCreated: (controller) {
-                        _mapController = controller;
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              final ThemeData theme = Theme.of(context);
+              final double maxContentWidth = min(constraints.maxWidth, 520);
+              final double horizontalPadding =
+                  (constraints.maxWidth * 0.04).clamp(16, 24);
+              final Color pillColor = theme.cardColor.withValues(alpha: 0.9);
+              final Color iconBackground = theme.brightness == Brightness.dark
+                  ? Colors.black.withValues(alpha: 0.45)
+                  : Colors.black.withValues(alpha: 0.6);
+
+              return Stack(
+                children: [
+                  if (mapVisible)
+                    GetBuilder<ThemeController>(
+                      builder: (themeController) {
                         _applyMapStyle(themeController.darkTheme);
+                        return GoogleMap(
+                          initialCameraPosition: _initialCameraPosition,
+                          myLocationEnabled: true,
+                          myLocationButtonEnabled: false,
+                          zoomControlsEnabled: false,
+                          onMapCreated: (controller) {
+                            _mapController = controller;
+                            _applyMapStyle(themeController.darkTheme);
+                          },
+                        );
                       },
-                    );
-                  },
-                ),
+                    ),
 
-              /// TOPO
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
-                  child: Row(
-                    children: [
-                      Builder(
-                        builder: (context) {
-                          return GestureDetector(
-                            onTap: () => Scaffold.of(context).openDrawer(),
-                            child: Container(
-                              height: 44,
-                              width: 44,
-                              decoration: BoxDecoration(
-                                color: Colors.black.withValues(alpha: 0.6),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Icon(Icons.menu, color: Colors.white),
-                            ),
-                          );
-                        },
+                  /// TOPO
+                  SafeArea(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: horizontalPadding,
+                        vertical: Dimensions.paddingSizeDefault,
                       ),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: () => _toggleOnline(
-                          profileController,
-                          Get.find<OrderController>(),
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 10,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFD400),
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color(0x22000000),
-                                blurRadius: 10,
-                              ),
-                            ],
-                          ),
-                          child: Text(
-                            isOnline ? 'Desconectar' : 'Conectar',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              /// SALDO
-              Positioned(
-                top: 90,
-                left: 16,
-                right: 16,
-                child: GetBuilder<ProfileController>(
-                  builder: (controller) {
-                    return Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(18),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 20,
-                            color: Color(0x22000000),
-                          ),
-                        ],
-                      ),
-                      child: Row(
+                      child: Stack(
+                        alignment: Alignment.topCenter,
                         children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Seu saldo disponível',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.black54,
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Builder(
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () => Scaffold.of(context).openDrawer(),
+                                  child: Container(
+                                    height: 44,
+                                    width: 44,
+                                    decoration: BoxDecoration(
+                                      color: iconBackground,
+                                      borderRadius: BorderRadius.circular(14),
+                                    ),
+                                    child: const Icon(Icons.menu, color: Colors.white),
                                   ),
-                                ),
-                                const SizedBox(height: 6),
-                                Text(
-                                  PriceConverterHelper.convertPrice(
-                                    controller.profileModel?.balance ?? 0,
-                                  ),
-                                  style: const TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                const Text(
-                                  'Ganhe mais ao entregar rápido e bem!',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                              ],
+                                );
+                              },
                             ),
                           ),
-                          const Icon(Icons.chevron_right),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(maxWidth: maxContentWidth),
+                            child: GetBuilder<ProfileController>(
+                              builder: (controller) {
+                                final bool expanded = controller.showBalance;
+                                return AnimatedSize(
+                                  duration: const Duration(milliseconds: 250),
+                                  curve: Curves.easeInOut,
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 18,
+                                      vertical: 10,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: pillColor,
+                                      borderRadius: BorderRadius.circular(30),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Color(0x33000000),
+                                          blurRadius: 16,
+                                          offset: Offset(0, 6),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Flexible(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                PriceConverterHelper.convertPrice(
+                                                  controller.profileModel?.balance ?? 0,
+                                                ),
+                                                style: theme.textTheme.titleMedium?.copyWith(
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                              if (expanded) ...[
+                                                const SizedBox(height: 4),
+                                                Text(
+                                                  'Saldo do dia',
+                                                  style: theme.textTheme.bodySmall?.copyWith(
+                                                    color: theme.hintColor,
+                                                  ),
+                                                ),
+                                              ],
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 12),
+                                        GestureDetector(
+                                          onTap: controller.toggleBalanceVisibility,
+                                          child: AnimatedRotation(
+                                            turns: expanded ? 0.5 : 0,
+                                            duration: const Duration(milliseconds: 250),
+                                            child: Icon(
+                                              Icons.keyboard_arrow_down_rounded,
+                                              color: theme.colorScheme.onSurface,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
                         ],
                       ),
-                    );
-                  },
-                ),
-              ),
+                    ),
+                  ),
 
-              /// STATUS
-              Positioned(
-                left: 16,
-                right: 16,
-                bottom: 92,
-                child: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 300),
-                  opacity: isOnline ? 1 : 0,
-                  child: Row(
-                    children: [
-                      Text(
+                  /// BOTÕES FLUTUANTES MAPA
+                  Positioned(
+                    right: horizontalPadding,
+                    top: constraints.maxHeight * 0.28,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _MapFloatingButton(
+                          icon: Icons.layers_outlined,
+                          onTap: () {},
+                        ),
+                        const SizedBox(height: 12),
+                        _MapFloatingButton(
+                          icon: Icons.my_location,
+                          onTap: () {},
+                        ),
+                        const SizedBox(height: 12),
+                        _MapFloatingButton(
+                          icon: Icons.warning_amber_rounded,
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  /// STATUS
+                  Positioned(
+                    left: horizontalPadding,
+                    right: horizontalPadding,
+                    bottom: 110,
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 300),
+                      opacity: isOnline ? 1 : 0,
+                      child: Text(
                         searchingText,
+                        textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Color(0xFFFFD400),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
 
-              /// BOTÃO +
-              Positioned(
-                right: 18,
-                bottom: 120,
-                child: GetBuilder<OrderController>(
-                  builder: (orderController) {
-                    final int available = orderController.latestOrderList?.length ?? 0;
-                    return GestureDetector(
-                      onTap: () {
-                        Get.to(() => OrderRequestScreen(onTap: () => Get.back()));
-                      },
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Container(
-                            height: 52,
-                            width: 52,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFFFD400),
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0x33000000),
-                                  blurRadius: 10,
-                                ),
-                              ],
-                            ),
-                            child: const Icon(Icons.add, size: 30),
+                  /// RODAPÉ
+                  Positioned(
+                    left: horizontalPadding,
+                    right: horizontalPadding,
+                    bottom: 12,
+                    child: SafeArea(
+                      top: false,
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: maxContentWidth),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          decoration: BoxDecoration(
+                            color: theme.cardColor.withValues(alpha: 0.9),
+                            borderRadius: BorderRadius.circular(32),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x33000000),
+                                blurRadius: 20,
+                                offset: Offset(0, 10),
+                              ),
+                            ],
                           ),
-                          if (available > 0)
-                            Positioned(
-                              top: -4,
-                              right: -4,
-                              child: Container(
-                                padding: const EdgeInsets.all(6),
-                                decoration: const BoxDecoration(
-                                  color: Colors.black,
-                                  shape: BoxShape.circle,
+                          child: Row(
+                            children: [
+                              _CircularActionButton(
+                                icon: mapVisible
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
+                                onTap: () {
+                                  setState(() {
+                                    mapVisible = !mapVisible;
+                                  });
+                                },
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () => _toggleOnline(
+                                    profileController,
+                                    Get.find<OrderController>(),
+                                  ),
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 250),
+                                    height: 52,
+                                    decoration: BoxDecoration(
+                                      color: isOnline
+                                          ? const Color(0xFF3DDC84)
+                                          : const Color(0xFFFFD400),
+                                      borderRadius: BorderRadius.circular(26),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      isOnline ? searchingText : 'Conectar',
+                                      textAlign: TextAlign.center,
+                                      style: theme.textTheme.titleMedium?.copyWith(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                child: Text(
-                                  available.toString(),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
+                              ),
+                              const SizedBox(width: 12),
+                              GetBuilder<OrderController>(
+                                builder: (orderController) {
+                                  final int available =
+                                      orderController.latestOrderList?.length ?? 0;
+                                  return Stack(
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      _CircularActionButton(
+                                        icon: Icons.list_alt_rounded,
+                                        onTap: () {
+                                          Get.to(
+                                            () => OrderRequestScreen(
+                                              onTap: () => Get.back(),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      if (available > 0)
+                                        Positioned(
+                                          top: -4,
+                                          right: -4,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(6),
+                                            decoration: const BoxDecoration(
+                                              color: Colors.black,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Text(
+                                              available.toString(),
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+              /// 📦 CARD ENTREGA
+                  GetBuilder<OrderController>(
+                    builder: (controller) {
+                      if (controller.latestOrderList == null ||
+                          controller.latestOrderList!.isEmpty) {
+                        _alertPlayed = false;
+                        _resetRequestTimer();
+                        return const SizedBox();
+                      }
+
+                      final order = controller.latestOrderList!.first;
+
+                      if (_activeOrderId != order.id) {
+                        _startRequestTimer(order);
+                      }
+
+                      _playAlertOnce();
+                      _cardAnimController.forward();
+
+                      return Stack(
+                        children: [
+                          Positioned.fill(
+                            child: AnimatedBuilder(
+                              animation: _requestTimerController,
+                              builder: (context, child) {
+                                final opacity = 0.2 + 0.4 * _requestTimerController.value;
+                                return Container(
+                                  color: Colors.black.withValues(alpha: opacity),
+                                );
+                              },
+                            ),
+                          ),
+                          Positioned(
+                            left: horizontalPadding,
+                            right: horizontalPadding,
+                            bottom: 90,
+                            child: SlideTransition(
+                              position: _slideAnim,
+                              child: FadeTransition(
+                                opacity: _fadeAnim,
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(maxWidth: maxContentWidth),
+                                  child: _DeliveryRequestCard(
+                                    order: order,
+                                    remainingSeconds: _remainingSeconds,
+                                    progress: 1 - _requestTimerController.value,
+                                    onAccept: () => _acceptOrder(order),
+                                    onDecline: _declineOrder,
                                   ),
                                 ),
                               ),
                             ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-
-              /// 📦 CARD ENTREGA
-              GetBuilder<OrderController>(
-                builder: (controller) {
-                  if (controller.latestOrderList == null ||
-                      controller.latestOrderList!.isEmpty) {
-                    _alertPlayed = false;
-                    _resetRequestTimer();
-                    return const SizedBox();
-                  }
-
-                  final order = controller.latestOrderList!.first;
-
-                  if (_activeOrderId != order.id) {
-                    _startRequestTimer(order);
-                  }
-
-                  _playAlertOnce();
-                  _cardAnimController.forward();
-
-                  return Stack(
-                    children: [
-                      Positioned.fill(
-                        child: AnimatedBuilder(
-                          animation: _requestTimerController,
-                          builder: (context, child) {
-                            final opacity = 0.2 + 0.4 * _requestTimerController.value;
-                            return Container(
-                              color: Colors.black.withValues(alpha: opacity),
-                            );
-                          },
-                        ),
-                      ),
-                      Positioned(
-                        left: 16,
-                        right: 16,
-                        bottom: 90,
-                        child: SlideTransition(
-                          position: _slideAnim,
-                          child: FadeTransition(
-                            opacity: _fadeAnim,
-                            child: _DeliveryRequestCard(
-                              order: order,
-                              remainingSeconds: _remainingSeconds,
-                              progress: 1 - _requestTimerController.value,
-                              onAccept: () => _acceptOrder(order),
-                              onDecline: _declineOrder,
-                            ),
                           ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
+                        ],
+                      );
+                    },
+                  ),
+                ],
+              );
+            },
           );
         },
+      ),
+    );
+  }
+}
+
+class _CircularActionButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const _CircularActionButton({
+    required this.icon,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(26),
+      child: Container(
+        height: 46,
+        width: 46,
+        decoration: BoxDecoration(
+          color: Colors.black.withValues(alpha: 0.45),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon, color: Colors.white),
+      ),
+    );
+  }
+}
+
+class _MapFloatingButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const _MapFloatingButton({
+    required this.icon,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(26),
+      child: Container(
+        height: 48,
+        width: 48,
+        decoration: BoxDecoration(
+          color: Colors.black.withValues(alpha: 0.45),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon, color: Colors.white),
       ),
     );
   }
@@ -745,147 +879,200 @@ class _DeliveryRequestCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final earnings =
         (order.originalDeliveryCharge ?? 0) + (order.dmTips ?? 0);
-    final distance = Get.find<AddressController>().getRestaurantDistance(
-      LatLng(
-        double.tryParse(order.storeLat ?? '') ?? 0,
-        double.tryParse(order.storeLng ?? '') ?? 0,
-      ),
+    final ThemeData theme = Theme.of(context);
+    final LatLng storeLatLng = LatLng(
+      double.tryParse(order.storeLat ?? '') ?? 0,
+      double.tryParse(order.storeLng ?? '') ?? 0,
     );
 
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: const Color(0xFF2B2B2B),
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 24,
-            color: Color(0x44000000),
-            offset: Offset(0, 8),
-          ),
-        ],
+    return StreamBuilder<Position>(
+      stream: Geolocator.getPositionStream(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+          distanceFilter: 10,
+        ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              const Icon(Icons.delivery_dining, color: Colors.white),
-              const SizedBox(width: 8),
-              const Text(
-                'Delivery',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-              const Spacer(),
-              IconButton(
-                onPressed: onDecline,
-                icon: const Icon(Icons.close, color: Colors.white),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Text(
-            PriceConverterHelper.convertPrice(earnings),
-            style: const TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 6),
-          _InfoRow(
-            label: 'Valor base',
-            value: PriceConverterHelper.convertPrice(order.originalDeliveryCharge ?? 0),
-          ),
-          if ((order.dmTips ?? 0) > 0)
-            _InfoRow(
-              label: 'Valor promocional',
-              value: '+${PriceConverterHelper.convertPrice(order.dmTips ?? 0)}',
-              highlight: true,
-            ),
-          const SizedBox(height: 12),
-          _InfoRow(label: 'Tipo', value: order.moduleType ?? 'Food'),
-          _InfoRow(
-            label: 'Distância',
-            value: '${distance.toStringAsFixed(1)} km',
-          ),
-          _InfoRow(label: 'Prazo', value: order.scheduleAt ?? 'Agora'),
-          _InfoRow(label: 'Loja', value: order.storeName ?? '-'),
-          _InfoRow(
-            label: 'Bairro',
-            value: order.deliveryAddress?.address ?? '-',
-          ),
-          if (order.paymentMethod == 'cash_on_delivery')
-            _InfoRow(
-              label: 'Dinheiro',
-              value: PriceConverterHelper.convertPrice(order.orderAmount ?? 0),
-              highlight: true,
-            ),
-          const SizedBox(height: 14),
-          Stack(
-            children: [
-              Container(
-                height: 6,
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              FractionallySizedBox(
-                widthFactor: progress.clamp(0, 1),
-                child: Container(
-                  height: 6,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFFD400),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
+      builder: (context, snapshot) {
+        final profileController = Get.find<ProfileController>();
+        final LatLng? courierLatLng = snapshot.data != null
+            ? LatLng(snapshot.data!.latitude, snapshot.data!.longitude)
+            : (profileController.recordLocationBody != null
+                ? LatLng(
+                    profileController.recordLocationBody!.latitude,
+                    profileController.recordLocationBody!.longitude,
+                  )
+                : null);
+        final double distance = Get.find<AddressController>().getRestaurantDistance(
+          storeLatLng,
+          customerLatLng: courierLatLng,
+        );
+
+        return Container(
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            color: theme.cardColor.withValues(alpha: 0.96),
+            borderRadius: BorderRadius.circular(24),
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 24,
+                color: Color(0x44000000),
+                offset: Offset(0, 8),
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(
-                child: SizedBox(
-                  height: 52,
-                  child: ElevatedButton(
-                    onPressed: onAccept,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFFFD400),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      'Aceitar pedido',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+              Row(
+                children: [
+                  const Icon(Icons.delivery_dining, color: Color(0xFFFFD400)),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'Delivery',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: onDecline,
+                    icon: const Icon(Icons.close),
+                  ),
+                ],
               ),
-              const SizedBox(width: 12),
+              const SizedBox(height: 6),
               Text(
-                _formatSeconds(remainingSeconds),
-                style: const TextStyle(
-                  color: Color(0xFFFFD400),
-                  fontWeight: FontWeight.w600,
+                'Nova entrega disponível',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
                 ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFFD400).withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      PriceConverterHelper.convertPrice(earnings),
+                      style: const TextStyle(
+                        color: Color(0xFFFFD400),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      order.storeName ?? '-',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              _InfoRow(
+                label: 'Valor da entrega',
+                value: PriceConverterHelper.convertPrice(earnings),
+                highlight: true,
+              ),
+              _InfoRow(
+                label: 'Valor base',
+                value: PriceConverterHelper.convertPrice(order.originalDeliveryCharge ?? 0),
+              ),
+              if ((order.dmTips ?? 0) > 0)
+                _InfoRow(
+                  label: 'Valor promocional',
+                  value: '+${PriceConverterHelper.convertPrice(order.dmTips ?? 0)}',
+                  highlight: true,
+                ),
+              _InfoRow(label: 'Tipo', value: order.moduleType ?? 'Food'),
+              _InfoRow(
+                label: 'Distância',
+                value: '${distance.toStringAsFixed(1)} km',
+              ),
+              _InfoRow(label: 'Prazo', value: order.scheduleAt ?? 'Agora'),
+              _InfoRow(label: 'Loja', value: order.storeName ?? '-'),
+              _InfoRow(
+                label: 'Bairro',
+                value: order.deliveryAddress?.address ?? '-',
+              ),
+              if (order.paymentMethod == 'cash_on_delivery')
+                _InfoRow(
+                  label: 'Dinheiro',
+                  value: PriceConverterHelper.convertPrice(order.orderAmount ?? 0),
+                  highlight: true,
+                ),
+              const SizedBox(height: 14),
+              Stack(
+                children: [
+                  Container(
+                    height: 6,
+                    decoration: BoxDecoration(
+                      color: theme.dividerColor.withValues(alpha: 0.3),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  FractionallySizedBox(
+                    widthFactor: progress.clamp(0, 1),
+                    child: Container(
+                      height: 6,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFD400),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: onAccept,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFFD400),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: const Text(
+                          'Aceitar pedido',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    _formatSeconds(remainingSeconds),
+                    style: const TextStyle(
+                      color: Color(0xFFFFD400),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -908,19 +1095,24 @@ class _InfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 6),
       child: Row(
         children: [
           Text(
             '$label: ',
-            style: const TextStyle(color: Colors.white70),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.hintColor,
+            ),
           ),
           Expanded(
             child: Text(
               value,
               style: TextStyle(
-                color: highlight ? const Color(0xFFFFD400) : Colors.white,
+                color: highlight
+                    ? const Color(0xFFFFD400)
+                    : theme.colorScheme.onSurface,
                 fontWeight: highlight ? FontWeight.w600 : FontWeight.normal,
               ),
               overflow: TextOverflow.ellipsis,
